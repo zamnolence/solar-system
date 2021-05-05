@@ -1,3 +1,8 @@
+#Local system specific files / folders
+requirements_old.txt
+.vscode/
+devenv/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
