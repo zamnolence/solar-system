@@ -4,6 +4,14 @@ from app            import app, db
 from app.forms      import LoginForm, RegistrationForm
 from app.models     import User
 from werkzeug.urls  import url_parse
+from datetime       import datetime
+
+# Record time of last visit
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 
 # Index
@@ -24,6 +32,7 @@ def index():
     ]
   return render_template('index.html', title='Home', posts=posts)
 
+
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -42,11 +51,13 @@ def login():
         return redirect(next_page)   # reditect to requested URL if exists
     return render_template('login.html', title='Sign In', form=form)
 
+
 # Logout
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
 
 # Register
 @app.route('/register', methods=['GET', 'POST'])
@@ -62,6 +73,7 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
 
 # User profile
 @app.route('/user/<username>')  # dynamic component username
