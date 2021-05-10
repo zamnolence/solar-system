@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Hi, {{ current_user.username }}!</h1>
-  {% for post in posts %}
-  <div>
-    <p>
-      {{ post.author.username }} says: <b>{{ post.body }}</b>
-    </p>
-  </div>
-  {% endfor %}
+    <!-- HOME PAGE FOR GUESTS -->
+    {% if current_user.is_anonymous %}
+    <h1>Welcome!</h1>
+
+    <!-- INDEX PAGE FOR AUTHENTICATED USERS -->
+    {% else %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <p>Let's choose one of the following modules or go directly to quiz!</p>
+    
+    <!-- LEARNING MODULES-->
+
+    <!-- QUIZ -->
+  {% endif %}
 {% endblock %}

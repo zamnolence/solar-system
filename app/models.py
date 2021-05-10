@@ -4,6 +4,7 @@ from werkzeug.security  import generate_password_hash, check_password_hash
 from flask_login        import UserMixin
 from hashlib            import md5
 
+# User database table
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -15,7 +16,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
-    
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -27,10 +28,13 @@ class User(UserMixin, db.Model):
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
+
+# Post database table
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))

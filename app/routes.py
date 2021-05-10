@@ -14,7 +14,7 @@ def before_request():
         db.session.commit()
 
 
-# Index
+# Index view
 @app.route('/')
 @app.route('/index')
 ## @login_required
@@ -33,7 +33,7 @@ def index():
   return render_template('index.html', title='Home', posts=posts)
 
 
-# Login
+# Login view
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:           # redirect if already logged in
@@ -52,14 +52,14 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
-# Logout
+# Logout view
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
-# Register
+# Register view
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:           # redirect if already logged in
@@ -75,7 +75,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-# User profile
+# User profile view
 @app.route('/user/<username>')  # dynamic component username
 @login_required                 # only logged in user allow
 def user(username):
@@ -87,7 +87,7 @@ def user(username):
     return render_template('user.html', user=user, posts=posts)
 
 
-# Edit profile
+# Edit profile view
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
