@@ -52,6 +52,9 @@ class Post(db.Model):
   def downvote(self):
     self.downvotes += 1
 
+  def vote_spread(self):
+    return self.upvotes - self.downvotes
+
 class Attempt(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
