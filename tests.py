@@ -106,35 +106,35 @@ class tests(unittest.TestCase):
     db.session.add(att)
     db.session.commit()
     att = Attempt.query.first()
-    self.assertFalse(att.answers.count())
+    self.assertFalse(att.answers.count(), "Answer count is not 0.")
 
     # Add 5 answers
     for i in range(1, 6):
       a = Answer(attempt_id=att.id, question=i)
       att.add_answer(a)
-    self.assertEqual(att.answers.count(), 5)
+    self.assertEqual(att.answers.count(), 5, "Answer count is not 5.")
 
     # Add 4 more answers
     for i in range(6, 10):
       a = Answer(attempt_id=att.id, question=i)      
       att.add_answer(a)
-    self.assertEqual(att.answers.count(), 9)
+    self.assertEqual(att.answers.count(), 9, "Answer count is not 9.")
 
     # Add a duplicate answer
     a = Answer(attempt_id=att.id, question=5)
     att.add_answer(a)
-    self.assertEqual(att.answers.count(), 9)
+    self.assertEqual(att.answers.count(), 9, "Duplicate answer was accepted.")
 
     # Add a 10th answer
     a = Answer(attempt_id=att.id, question=10)
     db.session.add(a)
     db.session.commit()
-    self.assertEqual(att.answers.count(), 10)
+    self.assertEqual(att.answers.count(), 10, "Answer count is not 10.")
 
     # Add an 11th answer
     a = Answer(attempt_id=att.id, question=11)      
     att.add_answer(a)
-    self.assertEqual(att.answers.count(), 10)
+    self.assertEqual(att.answers.count(), 10, "11th answers was accepted (Out of Bounds).")
 
 # Answer specific tests
 
