@@ -87,4 +87,15 @@ class Answer(db.Model):
     correct = 'Incorrect' if self.correct == 0 else 'Correct' 
     return 'Answer ID: {}, Attempt ID: {}, Question: {}, {}'.format(
       self.id, self.attempt_id, self.question, correct)
-    
+  
+  @validates('question')
+  def validate_question(self, key, question):
+    if question <= 0 or question > 10:
+      raise AssertionError('Question must be between 1 and 10. Provided: {}'.format(question))
+    return question
+
+  @validates('correct')
+  def validate_correct(self, key, correct):
+    if correct not in [0, 1]:
+      raise AssertionError('Correct must be 0 (correct) or 1 (incorrect). Provided: {}'.format(correct))
+    return correct

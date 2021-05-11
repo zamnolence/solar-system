@@ -9,10 +9,12 @@ class tests(unittest.TestCase):
       'sqlite:///'+os.path.join(basedir, 'test.db')
     self.app = app.test_client()
     db.create_all()
-    user0 = User(id='1', username='JaneDoe', email='Jane.Doe@email.com')
-    user1 = User(id='99999999', username='JohnSmith', email='John.Smith@email.com', about_me='I am indifferent of cats')
-    db.session.add(user0)
-    db.session.add(user1)
+    u1 = User(id='1', username='JaneDoe', email='Jane.Doe@email.com')
+    u2 = User(id='99999999', username='JohnSmith', email='John.Smith@email.com', about_me='I am indifferent of cats')
+    att = Attempt(user_id=u1.id)
+    db.session.add(u1)
+    db.session.add(u2)
+    db.session.add(att)
     db.session.commit()
 
 # User specific tests
@@ -102,9 +104,6 @@ class tests(unittest.TestCase):
 
 # Quiz Attempt specific tests
   def test_answer_count_in_range(self):
-    att = Attempt()
-    db.session.add(att)
-    db.session.commit()
     att = Attempt.query.first()
     self.assertFalse(att.answers.count(), "Answer count is not 0.")
 
@@ -114,29 +113,47 @@ class tests(unittest.TestCase):
       att.add_answer(a)
     self.assertEqual(att.answers.count(), 5, "Answer count is not 5.")
 
-    # Add 4 more answers
-    for i in range(6, 10):
+    # Add 5 more answers
+    for i in range(6, 11):
       a = Answer(attempt_id=att.id, question=i)      
       att.add_answer(a)
-    self.assertEqual(att.answers.count(), 9, "Answer count is not 9.")
-
-    # Add a duplicate answer
-    a = Answer(attempt_id=att.id, question=5)
-    att.add_answer(a)
-    self.assertEqual(att.answers.count(), 9, "Duplicate answer was accepted.")
-
-    # Add a 10th answer
-    a = Answer(attempt_id=att.id, question=10)
-    db.session.add(a)
-    db.session.commit()
     self.assertEqual(att.answers.count(), 10, "Answer count is not 10.")
 
     # Add an 11th answer
-    a = Answer(attempt_id=att.id, question=11)      
+    # No more than 10 unique answers can be present due to answer validation, 
+    # so this is part of the test is functionally useless at this time.
+    a = Answer(attempt_id=att.id)      
     att.add_answer(a)
-    self.assertEqual(att.answers.count(), 10, "11th answers was accepted (Out of Bounds).")
+    self.assertEqual(att.answers.count(), 10, "11th answer was accepted (Out of Bounds).")
+
+  def test_duplicate_answer(self):
+    att = Attempt.query.first()
+    self.assertFalse(att.answers.count(), "Answer count is not 0.")
+
+    a1 = Answer(attempt_id=att.id, question=5)
+    a2 = Answer(attempt_id=att.id, question=5)
+    att.add_answer(a1)
+    att.add_answer(a2)
+    self.assertEqual(att.answers.count(), 1, "Duplicate answer was accepted.")
 
 # Answer specific tests
+  def test_question_number_valid(self):
+    with self.assertRaises(AssertionError):
+      a1 = Answer(question=-1)
+      a2 = Answer(question=11)
+
+  def test_answer_correct_valid(self):
+    with self.assertRaises(AssertionError):
+      a1 = Answer(correct=-1)
+      a2 = Answer(correct=2)
+    
+    att = Attempt.query.first()
+    self.assertFalse(att.answers.count(), "Answer count is not 0.")
+    a1 = Answer(attempt_id=att.id, question=1, correct=0)
+    a2 = Answer(attempt_id=att.id, question=2, correct=1)
+    att.add_answer(a1)
+    att.add_answer(a2)
+    self.assertEqual(att.answers.count(), 2, "Answer count is not 2.")
 
   def tearDown(self):
     db.session.remove()
