@@ -1,12 +1,10 @@
-from time               import time
-import jwt
 from datetime           import datetime
-from app                import app, db, login
+from app                import db, login
 from werkzeug.security  import generate_password_hash, check_password_hash
 from flask_login        import UserMixin
 from hashlib            import md5
+from sqlalchemy.orm import validates
 
-# User database table
 class User(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(64), index=True, unique=True)
@@ -32,27 +30,10 @@ class User(UserMixin, db.Model):
     return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
       digest, size)
 
-    def get_reset_password_token(self, expires_in=600):
-        return jwt.encode(
-            {'reset_password': self.id, 'exp': time() + expires_in},
-            app.config['SECRET_KEY'], algorithm='HS256')
-
-    @staticmethod
-    def verify_reset_password_token(token):
-        try:
-            id = jwt.decode(token, app.config['SECRET_KEY'],
-                            algorithms=['HS256'])['reset_password']
-        except:
-            return
-        return User.query.get(id)
-
-
 @login.user_loader
 def load_user(id):
   return User.query.get(int(id))
 
-
-# Post database table
 class Post(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -85,6 +66,17 @@ class Attempt(db.Model):
     return 'Attempt ID: {}, User: {}, Progress: {}/10, Timestamp: {}'.format(
       self.id, self.user_id, self.answers.count(), self.timestamp)
 
+  def add_answer(self, answer):
+    att_answers = self.answers.all()    
+    if len(att_answers) >= 10:
+      return 1
+    for a in att_answers:
+      if answer.question == a.question:
+        return 1
+    db.session.add(answer)
+    db.session.commit()
+    return 0
+
 class Answer(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   attempt_id = db.Column(db.Integer, db.ForeignKey('attempt.id'))
@@ -95,3 +87,4 @@ class Answer(db.Model):
     correct = 'Incorrect' if self.correct == 0 else 'Correct' 
     return 'Answer ID: {}, Attempt ID: {}, Question: {}, {}'.format(
       self.id, self.attempt_id, self.question, correct)
+    
