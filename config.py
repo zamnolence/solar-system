@@ -13,4 +13,5 @@ class Config(object):
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    ADMINS = ['22774232@student.uwa.edu.au']
+    ADMINS = ['22774232@student.uwa.edu.au',
+              '22601257@student.uwa.edu.au']
