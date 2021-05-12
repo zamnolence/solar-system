@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Result | Solar System Quiz</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <!-- Results  -->
+    <h3>Score: {{ latestScore.score }}</h3> 
+    <h2 id="user-score"></h2>
+
+    <!-- Restart -->
+    <a href='/'><button id="restart-button">Restart</button></a>
+
+    <!-- Rank -->
+    <table style="width:100%;">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in scoreSorted %}
+        {%  if loop.index < 5  %}   <!-- Show top 5 -->
+            <tr>
+                {% if current_user.if == score.user_parent.id %}
+                <td>{{ score.user_parent.username }} (You)</td>
+                {% else %}
+                <td>{{ score.user_parent.username }}</td>
+                {% endif %}
+                <td>{{ score.score }}</td>
+            </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

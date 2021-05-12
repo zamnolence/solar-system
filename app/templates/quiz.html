@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Quiz | Solar System Quiz</title>
+<!-- External JavaScript files -->
+<script async type="text/javascript" src="{{ url_for('static', filename='quiz.js') }}"></script>
+
+<!-- In-document JavaScript -->
+<script>
+    /* This function hide unselected questions from view  
+    *  and allow user to click on the button to select question
+    */
+    $(document).ready(function () {
+        $('button.qBtn').click(function () {
+            $('button.qBtn').removeClass('clicked');
+            $('button.qBtn').addClass('unclicked');
+            $(this).removeClass('unclicked')
+            $(this).addClass("clicked");
+            let showDiv = (this.id).replace('Button', '');
+            $('div.main').hide(); /* hide questions for div with class='main'*/
+            $('#' + showDiv).show();
+        });
+    });
+    $(function () {
+        $('#Q1Button').click(); /* Click (select) first question upon entry */
+    });
+
+    /* Keep track of scores */
+    document.getElementById('points').style.display = 'inline-block';
+</script>
+
+{% endblock %} <!-- end block for head -->
+
+
+{% block body %}
+<div>
+    <div class="container">
+
+    <!-- Buttons for selecting questions -->
+    {% for q_num in range(1, (questions | length) + 1) %}
+        <button class="qBtn unclicked" id="Q{{ q_num }}Button">Q{{ q_num }}</button>
+    {% endfor %}
+
+    <!-- Generates questions -->
+    {% for q_num in range(questions | length) %}
+    <div id="Q{{ q_num+1 }}" class="main">
+
+        <!-- Question number and its content -->
+        <h1>Question {{ q_num+1 }}</h1>
+        <p> {{questions[q_num].question}} </p>
+
+        <!-- Generate MCQ options -->
+        <div id="mcq{{ q_num+1 }}">
+        {% for option in questions[q_num].answerOptions %}
+            <label>
+                <input type="radio" name="Q{{ q_num+1 }}" value="{{ option }}">
+                <span></span>
+                {{option}}
+            </label>
+            <br>
+        {% endfor %}
+        <br>
+            <!-- Check button for validating each question -->
+            <button class="submitQ" type="button" onclick="validateMCQ('{{ q_num+1 }}')">
+                Check
+            </button>
+        </div>
+        
+        <!-- Keep track of where we are -->
+        <p style="visibility:hidden;" id='attempts{{ q_num+1 }}'></p>
+        <p style="visibility:hidden;" id="answer{{ q_num+1 }}">{{ questions[q_num].answer }}</p>
+        <p style="visibility:hidden;" id="reference{{ q_num+1 }}">{{ questions[q_num].reference }}</p>
+        <p id="msg{{ q_num+1 }}"></p>
+
+        <!-- For first question have Next option only -->
+        {% if q_num == 0 %}
+        <div style="justify-content: flex-end;" class="nextPrevious_container endOfDiv">
+            <button class="submitQ" type="button" onclick="showNextQ('{{ q_num+1 }}')">
+                Next
+            </button>
+        </div>
+
+        <!-- For last question have Previous and Finish (submitQuiz) options-->
+        {% elif q_num == questions | length - 1 %}
+        <div class="nextPrevious_container endOfDiv">
+            <button class="submitQ" type="button" onclick="showPreviousQ('{{ q_num+1 }}')">
+                Previous
+            </button>
+            <button onclick="submitQuiz()" class="submitQ" type="button">
+                Finish
+            </button>
+        </div>
+
+        <!-- For other questions have Previous and Next options for navigate -->
+        {% else %}
+        <div class="nextPrevious_container endOfDiv">
+            <button class="submitQ" type="button" onclick="showPreviousQ('{{ q_num+1 }}')">
+                Previous
+            </button>
+            <button class="submitQ" type="button" onclick="showNextQ('{{ q_num+1 }}')">
+                Next
+            </button>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+    <p>{{count}}</p>
+
+</div>
+{% endblock %}

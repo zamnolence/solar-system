@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>
+        Home | Solar System Quiz
+    </title>
+{% endblock %}
+
+{% block body %}
+
+    <!-- Welcome messages and about -->
+    <div class="container">
+        <!-- Home page for authenticated users -->
+        {% if current_user.is_authenticated %}
+            <h2>Welcome, {{ current_user.username }}!</h2>
+        <!-- Home page for anonymous user -->
+        {% else %}
+            <h2>Welcome to Solar System Quiz!</h2>
+            <p> 
+                Put in some explanations
+            </p>
+        {% endif %}
+    </div>
+
+    {% if current_user.is_authenticated %}
+    <!-- Content section -->
+    <div class="container">
+        <h3>Learning Modules</h3>
+        <!-- Select one of the modules to start -->
+
+            <!-- <a href="">The Vacuum of Space</a>
+            <a href="">The Planets</a>
+            <a href="">Satellites</a>
+            <a href="">The Sun</a> -->
+
+    </div>
+
+    <!-- Quiz section -->
+    <div class="container">
+        <h3>Quiz</h3>
+        <!-- Select one of the modules to start -->
+        {% for qset in questionSet %}
+            <button id="{{ qset.id }}" onclick="window.location.href='quiz?questionsetID='+this.id;" style="height:150px; width:150px;border: 1px solid; word-wrap:normal; margin:5px; padding:5px;">
+                {{ qset }}
+            </button>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+{% endblock %}
