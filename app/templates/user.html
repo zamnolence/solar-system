@@ -1,41 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table class="table table-hover">
-        <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}"></td>
-            <td>
-                <h1>User: {{ user.username }}</h1>
-                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%B %d, %Y - %H:%M:%S') }}</p>{% endif %}
-                {% if user == current_user %}
-                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
-    <hr>
+  <table class="table table-hover">
+    <tr valign="top">
+      <td><img src="{{ user.avatar(128) }}"></td>
+      <td>
+        <h1>User: {{ user.username }}</h1>
+        {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+        {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%B %d, %Y - %H:%M:%S') }}</p>{% endif %}
+        {% if user == current_user %}
+        <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+  <hr>
 
-    {% if form %}
-<form action="" method="post">
-  {{ form.hidden_tag() }}
-  <p>
+{% if form %}
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
       {{ form.post.label }}<br>
       {{ form.post(cols=32, rows=4) }}<br>
       {% for error in form.post.errors %}
       <span style="color: red;">[{{ error }}]</span>
       {% endfor %}
-  </p>
-  <p>{{ form.submit() }}</p>
-</form>
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
 {% endif %}
 {% for post in posts %}
   {% include '_post.html' %}
 {% endfor %}
 {% if prev_url %}
-<a href="{{ prev_url }}">Newer posts</a>
+  <a  href="{{ prev_url }}">Newer posts</a>
 {% endif %}
 {% if next_url %}
-<a href="{{ next_url }}">Older posts</a>
+  <a href="{{ next_url }}">Older posts</a>
 {% endif %}
 {% endblock %}
