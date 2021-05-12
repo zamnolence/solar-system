@@ -8,4 +8,9 @@
       says:<br>{{ post.body }}
     </td>
   </tr>
+  {% if current_user.id == post.user_id %}
+  <tr valign="bottom">
+    <a href="___ deletePost() ___">Delete Post</a>
+  </tr>
+  {% endif %}
 </table>

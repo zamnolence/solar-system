@@ -23,7 +23,6 @@ def before_request():
 # Index view
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
-## @login_required
 def index():
   if current_user.is_authenticated:
     page = request.args.get('page', 1, type=int)
@@ -91,7 +90,6 @@ def register():
 
 # User profile view
 @app.route('/user/<username>')  # dynamic component username
-## @login_required                 # only logged in user allow
 def user(username):
   user = User.query.filter_by(username=username).first_or_404() # first() if exists or sends 404 error if not exists
   return render_template('user.html', user=user, posts=user.posts)
