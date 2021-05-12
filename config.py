@@ -15,4 +15,4 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['22774232@student.uwa.edu.au',
               '22601257@student.uwa.edu.au']
-    POSTS_PER_PAGE = 3
+    POSTS_PER_PAGE = 10
