@@ -11,7 +11,7 @@
     <h3>Score: {{ latestScore.score }}</h3> 
     <h2 id="user-score"></h2>
 
-    <!-- Restart -->
+    <!-- Restart (redirect to home) -->
     <a href='/'><button id="restart-button">Restart</button></a>
 
     <!-- Rank -->
@@ -20,18 +20,20 @@
             <tr>
                 <th>Username</th>
                 <th>Score</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
         {% for score in scoreSorted %}
-        {%  if loop.index < 5  %}   <!-- Show top 5 -->
+        {%  if loop.index <= 10  %}   <!-- Show top 10 -->
             <tr>
-                {% if current_user.if == score.user_parent.id %}
+                {% if current_user.id == score.user_parent.id %}
                 <td>{{ score.user_parent.username }} (You)</td>
                 {% else %}
                 <td>{{ score.user_parent.username }}</td>
                 {% endif %}
                 <td>{{ score.score }}</td>
+                <td>{{ score.time_taken }}</td>
             </tr>
         {% else %}
         {% endif %}

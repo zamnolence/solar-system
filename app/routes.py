@@ -64,9 +64,10 @@ def user_profile(username):
     # get all scores of current_user
     user_scores = Score.query.filter_by(user_id=current_user.id).all()
     for score in user_scores:
-        score_dict.append({'module': score.questionset_id})
+        score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
-    return render_template('user_profile.html', user=user, score=total, userScore = user_scores)
+        scoreSorted = Score.query.filter_by(user_id=current_user.id).order_by(Score.score.desc()).all()
+    return render_template('user_profile.html', user=user, score=total, scoreSorted = scoreSorted)
 
 
 # Edit profile view
@@ -119,13 +120,13 @@ def reset_password(token):
         return redirect(url_for('login'))
     return render_template('reset_pass.html', form=form)
 
+
 # Quiz view
 @app.route('/quiz', methods = ['GET','POST'])
 def generate_quiz():
     return QuizController.generate_quiz()
 
 
-######## Currently, AJAX call in quiz.js fails. Not sure why.
 # Result view of latest submission
 @app.route('/result', methods=['GET'])
 def result():
@@ -139,4 +140,3 @@ def result():
 @app.route('/submit-results', methods=['POST'])
 def submit_results():
     return UserController.submit_results()
-

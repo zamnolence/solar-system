@@ -41,14 +41,18 @@
             <tr>
                 <th>Module</th>
                 <th>Score</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
-        {% for score in userScore %}
+        {% for score in scoreSorted %}
+        {%  if loop.index <= 5  %}   <!-- Show top 5 attempts -->
             <tr>
                 <td>{{ score.questionset_parent.name }}</td>
                 <td>{{ score.score }}</td>
+                <td>{{ score.time_taken }}</td>
             </tr>
+        {% endif %}
         {% endfor %}
         </tbody>
     </table>

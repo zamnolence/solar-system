@@ -7,7 +7,7 @@ from datetime       import datetime
 from app            import db, login
 from app.forms      import LoginForm, RegistrationForm, EditProfileForm
 from app.models     import load_user
-from app.models     import User, Post, Question, CurrentQuestion, QuestionSet, Option, Score
+from app.models     import User, CurrentQuestion, Option, Score
 from werkzeug.urls  import url_parse
 
  
@@ -44,35 +44,39 @@ class UserController():
 
     # Quiz submission resultss
     def submit_results():
-        # get results upon request
-        result_dict = request.get_json(force=True)
-        userID = int(result_dict['userID'])
-        questionsetID = result_dict['questionsetID']
-        score = result_dict['score']
-        # add new result to score table
-        res = Score(user_id=userID, questionset_id=questionsetID, score=score)
+        resultDict = request.get_json(force=True)
+        userID = int(resultDict['userID'])
+        questionsetID = resultDict['questionsetID']
+        score = resultDict['score']
+        seconds = resultDict['timeTaken']
+        time_obj = seconds.split(':')
+        timeTaken = time(minute = int(time_obj[0]), second = int(time_obj[1]))
+        res = Score(user_id = userID,
+                    questionset_id = questionsetID,
+                    score = score,
+                    time_taken = timeTaken)
         db.session.add(res)
         db.session.commit()
         return redirect(url_for('result'))
 
-# For quiz generating
+
+# Helper class for generating quiz
 class QuizController():
     def generate_quiz():
+        # Get a list of questions belongs to the selected set.  
         questionsetID = request.args.get('questionsetID')
         questionList = CurrentQuestion.query.filter(CurrentQuestion.questionset_id == questionsetID).all()
-        question_dict = []
-        for i in range(0, len(questionList)):
-            if questionList[i].question_id != '':
-                if questionList[i].parent.question_type.lower() == 'short-answer':
-                    question_dict.append({'question':questionList[i].parent.question,
-                                          'qType':'short',
-                                          'answer':questionList[i].parent.answer,
-                                          'reference':questionList[i].parent.reference_value})
-                elif questionList[i].parent.question_type.lower() == 'multiple-choice':
-                    answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
-                    answerOptions.append(questionList[i].parent.answer)
-                    random.shuffle(answerOptions)
-                    question_dict.append({'question':questionList[i].parent.question,
-                                          'qType':'multiple',
-                                           'answerOptions': answerOptions})
-        return render_template('quiz.html', questions = question_dict, questionsetID = questionsetID)
+        quiz_dict = []      # initialise question set
+        totalTime = 0       # initialise time available
+        for i in range(0, len(questionList)):           # for each question
+            if questionList[i].question_id != '':       # validate whether the id is empty
+                answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
+                answerOptions.append(questionList[i].parent.answer)
+                random.shuffle(answerOptions)           # shuffle options
+                quiz_dict.append({'question':questionList[i].parent.question,
+                                'qType':'multiple',
+                                'answerOptions': answerOptions,
+                                'answer':questionList[i].parent.answer})
+                totalTime += 20                         # 20 sec / question
+        return render_template('quiz.html', questions = quiz_dict, timer = totalTime, questionsetID = questionsetID)
+

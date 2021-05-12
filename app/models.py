@@ -84,10 +84,9 @@ class Post(db.Model):
 # Question table
 class Question(db.Model):
     __tablename__ = 'question'
-    #Initialise question statement
     id = db.Column(db.Integer, primary_key = True)
     question = db.Column(db.String(128))
-    question_type = db.Column(db.String(128))   # currently only work for mcq
+    question_type = db.Column(db.String(128))
     answer = db.Column(db.String(128))
     child = db.relationship("CurrentQuestion", backref="parent")
     option_child = db.relationship("Option", backref="parent")
@@ -141,6 +140,7 @@ class Score(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     questionset_id = db.Column(db.Integer, db.ForeignKey('questionset.id'))
     score = db.Column(db.Integer)
+    time_taken = db.Column(db.Time)
 
 
 
