@@ -44,8 +44,8 @@ class Post(db.Model):
   downvotes = db.Column(db.Integer, default=0)
 
   def __repr__(self):
-    return '<Post ID: {}, Char Count: {}, Page: {}, Votes- Up: {} Down: {}>'.format(
-      self.id, len(self.body), self.page, self.upvotes, self.downvotes)
+    return '<User: {}, Post ID: {}, Char Count: {}, Page: {}, Votes- Up: {} Down: {}>'.format(
+      self.user_id, self.id, len(self.body), self.page, self.upvotes, self.downvotes)
 
   def upvote(self):
     self.upvotes += 1

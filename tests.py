@@ -151,7 +151,7 @@ class tests(unittest.TestCase):
     self.assertFalse(att.answers.count(), "Answer count is not 0.")
     a1 = Answer(attempt_id=att.id, question=1, correct=0)
     a2 = Answer(attempt_id=att.id, question=2, correct=1)
-    att.add_answer(a1)
+    att.add_answer(a1) 
     att.add_answer(a2)
     self.assertEqual(att.answers.count(), 2, "Answer count is not 2.")
 
