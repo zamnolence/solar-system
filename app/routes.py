@@ -52,19 +52,18 @@ def before_request():
 @app.route('/user/<username>', methods = ['GET','POST'])
 def user_profile(username):
     user = User.query.filter_by(username=username).first_or_404()
-    # posts = [
-    #     {'author': user, 'body': 'Test post #1'},
-    #     {'author': user, 'body': 'Test post #2'}
-    # ]
+    page = request.args.get('page', 1, type=int)
+    posts = user.posts.paginate(
+      page, app.config['POSTS_PER_PAGE'], False)
     score_dict = [] # initialise module score dictionary
     total = 0       # initialise total score as zero
     # get all scores of current_user
-    user_scores = Score.query.filter_by(user_id=current_user.id).all()
+    user_scores = Score.query.filter_by(user_id=user.id).all()
     for score in user_scores:
         score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
-        scoreSorted = Score.query.filter_by(user_id=current_user.id).order_by(Score.score.desc()).all()
-    return render_template('user_profile.html', user=user, score=total, scoreSorted = scoreSorted)
+        scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
+    return render_template('user_profile.html', user=user, score=total, posts=posts.items, scoreSorted = scoreSorted)
 
 # Edit profile view
 @app.route('/edit_profile', methods=['GET', 'POST'])

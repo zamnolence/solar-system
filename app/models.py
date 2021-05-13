@@ -23,8 +23,8 @@ class User(UserMixin, db.Model):
     score_child = db.relationship("Score", backref = 'user_parent')
 
     def __repr__(self):
-      return '<User: {}, ID: {}, Total Posts: {}, Quiz Attempts: {}>'.format(
-        self.username, self.id, self.posts.count(), self.quiz_attempts.count())
+      return '<User: {}, ID: {}, Total Posts: {}>'.format(
+        self.username, self.id, self.posts.count())
   
     def set_password(self, password):
       self.password_hash = generate_password_hash(password)
