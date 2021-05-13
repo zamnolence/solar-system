@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+<<<<<<< HEAD:app/templates/reset_pass.html
 {% block head %}
 <title>Reset Password | Solar System Quiz</title>
 {% endblock %}
@@ -26,4 +27,26 @@
         <p>{{ form.submit() }}</p>
     </form>
 </div>
+=======
+{% block content %}
+  <h1>Reset Your Password</h1>
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.password.label }}<br>
+      {{ form.password(size=32) }}<br>
+      {% for error in form.password.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.password2.label }}<br>
+      {{ form.password2(size=32) }}<br>
+      {% for error in form.password2.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
+>>>>>>> comments:app/templates/reset_password.html
 {% endblock %}

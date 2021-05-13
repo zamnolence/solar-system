@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+<<<<<<< HEAD
 {% block head %}
 <title>Edit Profile | Solar System Quiz</title>
 {% endblock %}
@@ -26,4 +27,26 @@
         <p>{{ form.submit() }}</p>
     </form>
 </div>
+=======
+{% block content %}
+  <h1>Edit Profile</h1>
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.username.label }}<br>
+      {{ form.username(size=32) }}<br>
+      {% for error in form.username.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.about_me.label }}<br>
+      {{ form.about_me(cols=50, rows=4) }}<br>
+      {% for error in form.about_me.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
+>>>>>>> comments
 {% endblock %}
