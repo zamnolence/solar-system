@@ -18,6 +18,17 @@ def home():
     questionSet = QuestionSet.query.all()
     return render_template('home.html', questionSet = questionSet)
 
+# More Learning view
+@app.route('/more_learning')
+def more_learning():
+    return render_template('more_learning.html')
+
+# Scoreboard view
+@app.route('/scoreboard')
+@login_required
+def scoreboard():
+    return render_template('scoreboard.html')
+
 # Login view (redirect authenticated user to home)
 @app.route('/login', methods=['GET', 'POST'])
 def login():

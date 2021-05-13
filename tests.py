@@ -1,6 +1,6 @@
 import unittest, os
 from app import app, db
-from app.models import User, Post, Attempt, Answer
+from app.models import CurrentQuestion, Option, Question, QuestionSet, User, Post #Attempt, Answer
 
 class tests(unittest.TestCase):
   def setUp(self):
@@ -11,10 +11,18 @@ class tests(unittest.TestCase):
     db.create_all()
     u1 = User(id='1', username='JaneDoe', email='Jane.Doe@email.com')
     u2 = User(id='99999999', username='JohnSmith', email='John.Smith@email.com', about_me='I am indifferent of cats')
-    att = Attempt(user_id=u1.id)
     db.session.add(u1)
     db.session.add(u2)
-    db.session.add(att)
+
+    for i in range(4):
+      q = Question(question="Test{}".format(i), answer="Answer{}".format(i))
+      db.session.add(q)
+
+    for i in range(4):
+      for j in range(4):
+        o = Option(question_id=i, option_value="Answer{}".format(j))
+        db.session.add(o)
+
     db.session.commit()
 
 # User specific tests
@@ -102,62 +110,68 @@ class tests(unittest.TestCase):
 #  def test_post_body_validation(self):
     # Validation must be implemented first.
 
-# Quiz Attempt specific tests
-  def test_answer_count_in_range(self):
-    att = Attempt.query.first()
-    self.assertFalse(att.answers.count(), "Answer count is not 0.")
+# # Question specific tests
+#   def test_question_options(self):
+#     questions = Question.query.all()
+#     for question in questions:
+#       self.assertIn(question.answer, question.option_child.option_value, "Answer not present in question's option children.")
 
-    # Add 5 answers
-    for i in range(1, 6):
-      a = Answer(attempt_id=att.id, question=i)
-      att.add_answer(a)
-    self.assertEqual(att.answers.count(), 5, "Answer count is not 5.")
+# # Quiz Attempt specific tests
+#   def test_answer_count_in_range(self):
+#     att = Attempt.query.first()
+#     self.assertFalse(att.answers.count(), "Answer count is not 0.")
 
-    # Add 5 more answers
-    for i in range(6, 11):
-      a = Answer(attempt_id=att.id, question=i)      
-      att.add_answer(a)
-    self.assertEqual(att.answers.count(), 10, "Answer count is not 10.")
+#     # Add 5 answers
+#     for i in range(1, 6):
+#       a = Answer(attempt_id=att.id, question=i)
+#       att.add_answer(a)
+#     self.assertEqual(att.answers.count(), 5, "Answer count is not 5.")
 
-    # Add an 11th answer
-    # No more than 10 unique answers can be present due to answer validation, 
-    # so this is part of the test is functionally useless at this time.
-    a = Answer(attempt_id=att.id)      
-    att.add_answer(a)
-    self.assertEqual(att.answers.count(), 10, "11th answer was accepted (Out of Bounds).")
+#     # Add 5 more answers
+#     for i in range(6, 11):
+#       a = Answer(attempt_id=att.id, question=i)      
+#       att.add_answer(a)
+#     self.assertEqual(att.answers.count(), 10, "Answer count is not 10.")
 
-  def test_duplicate_answer(self):
-    att = Attempt.query.first()
-    self.assertFalse(att.answers.count(), "Answer count is not 0.")
+#     # Add an 11th answer
+#     # No more than 10 unique answers can be present due to answer validation, 
+#     # so this is part of the test is functionally useless at this time.
+#     a = Answer(attempt_id=att.id)      
+#     att.add_answer(a)
+#     self.assertEqual(att.answers.count(), 10, "11th answer was accepted (Out of Bounds).")
 
-    a1 = Answer(attempt_id=att.id, question=5)
-    a2 = Answer(attempt_id=att.id, question=5)
-    att.add_answer(a1)
-    att.add_answer(a2)
-    self.assertEqual(att.answers.count(), 1, "Duplicate answer was accepted.")
+#   def test_duplicate_answer(self):
+#     att = Attempt.query.first()
+#     self.assertFalse(att.answers.count(), "Answer count is not 0.")
 
-# Answer specific tests
-  def test_question_number_valid(self):
-    with self.assertRaises(AssertionError):
-      a1 = Answer(question=-1)
-      a2 = Answer(question=11)
+#     a1 = Answer(attempt_id=att.id, question=5)
+#     a2 = Answer(attempt_id=att.id, question=5)
+#     att.add_answer(a1)
+#     att.add_answer(a2)
+#     self.assertEqual(att.answers.count(), 1, "Duplicate answer was accepted.")
 
-  def test_answer_correct_valid(self):
-    with self.assertRaises(AssertionError):
-      a1 = Answer(correct=-1)
-      a2 = Answer(correct=2)
+# # Answer specific tests
+#   def test_question_number_valid(self):
+#     with self.assertRaises(AssertionError):
+#       a1 = Answer(question=-1)
+#       a2 = Answer(question=11)
+
+#   def test_answer_correct_valid(self):
+#     with self.assertRaises(AssertionError):
+#       a1 = Answer(correct=-1)
+#       a2 = Answer(correct=2)
     
-    att = Attempt.query.first()
-    self.assertFalse(att.answers.count(), "Answer count is not 0.")
-    a1 = Answer(attempt_id=att.id, question=1, correct=0)
-    a2 = Answer(attempt_id=att.id, question=2, correct=1)
-    att.add_answer(a1) 
-    att.add_answer(a2)
-    self.assertEqual(att.answers.count(), 2, "Answer count is not 2.")
+#     att = Attempt.query.first()
+#     self.assertFalse(att.answers.count(), "Answer count is not 0.")
+#     a1 = Answer(attempt_id=att.id, question=1, correct=0)
+#     a2 = Answer(attempt_id=att.id, question=2, correct=1)
+#     att.add_answer(a1) 
+#     att.add_answer(a2)
+#     self.assertEqual(att.answers.count(), 2, "Answer count is not 2.")
 
-  def tearDown(self):
-    db.session.remove()
-    db.drop_all()
+#   def tearDown(self):
+#     db.session.remove()
+#     db.drop_all()
 
 if __name__ == '__main__':
   unittest.main(verbosity=2)
