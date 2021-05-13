@@ -5,17 +5,10 @@ from app.models         import User
 
 # Login form
 class LoginForm(FlaskForm):
-<<<<<<< HEAD
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     # remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
-=======
-  username = StringField('Username', validators=[DataRequired()])
-  password = PasswordField('Password', validators=[DataRequired()])
-  remember_me = BooleanField('Remember Me')
-  submit = SubmitField('Sign In')
->>>>>>> comments
 
 # Registration form
 class RegistrationForm(FlaskForm):
@@ -65,12 +58,6 @@ class ResetPasswordRequestForm(FlaskForm):
 
 # Password reset form
 class ResetPasswordForm(FlaskForm):
-<<<<<<< HEAD
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Request Password Reset')
-=======
   password = PasswordField('Password', validators=[DataRequired()])
   password2 = PasswordField(
     'Repeat Password', validators=[DataRequired(), EqualTo('password')])
@@ -81,4 +68,3 @@ class PostForm(FlaskForm):
   post = TextAreaField('Say something', validators=[
     DataRequired(), Length(min=1, max=140)])
   submit = SubmitField('Submit')
->>>>>>> comments
