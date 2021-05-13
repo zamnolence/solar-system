@@ -14,12 +14,12 @@ class tests(unittest.TestCase):
     db.session.add(u1)
     db.session.add(u2)
 
-    for i in range(4):
+    for i in range(1, 5):
       q = Question(question="Test{}".format(i), answer="Answer{}".format(i))
       db.session.add(q)
 
-    for i in range(4):
-      for j in range(4):
+    for i in range(1, 5):
+      for j in range(1, 5):
         o = Option(question_id=i, option_value="Answer{}".format(j))
         db.session.add(o)
 
@@ -110,11 +110,14 @@ class tests(unittest.TestCase):
 #  def test_post_body_validation(self):
     # Validation must be implemented first.
 
-# # Question specific tests
-#   def test_question_options(self):
-#     questions = Question.query.all()
-#     for question in questions:
-#       self.assertIn(question.answer, question.option_child.option_value, "Answer not present in question's option children.")
+# Question specific tests
+  def test_question_options(self):
+    questions = Question.query.all()
+    for question in questions:
+      opt=[]
+      for o in question.option_child:
+        opt.append(o.option_value)
+      self.assertIn(question.answer, opt, "Answer {} not present in question's option children.".format(question.answer))
 
 # # Quiz Attempt specific tests
 #   def test_answer_count_in_range(self):
@@ -169,9 +172,9 @@ class tests(unittest.TestCase):
 #     att.add_answer(a2)
 #     self.assertEqual(att.answers.count(), 2, "Answer count is not 2.")
 
-#   def tearDown(self):
-#     db.session.remove()
-#     db.drop_all()
+  def tearDown(self):
+    db.session.remove()
+    db.drop_all()
 
 if __name__ == '__main__':
   unittest.main(verbosity=2)
