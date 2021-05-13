@@ -50,12 +50,10 @@ class User(UserMixin, db.Model):
             return
         return User.query.get(id)
     
-
 # Load authenticated user
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
 
 # Post table
 class Post(db.Model):
@@ -79,7 +77,6 @@ class Post(db.Model):
 
     def vote_spread(self):
       return self.upvotes - self.downvotes
-
 
 # Question table
 class Question(db.Model):
@@ -108,6 +105,13 @@ class CurrentQuestion(db.Model):
     def __repr__(self):
         return self.question
 
+    @validates('question_number')
+    def validate_question_number(self, key, question_number):
+      totalQuestions = QuestionSet.query.get(self.questionset_id).number_of_questions
+      if question_number <= 0 or question_number > totalQuestions:
+        raise AssertionError(
+          'Current Question number must be within range (1-{}). Provided: {}'.format(totalQuestions, question_number))
+      return question_number
 
 # Question set table (At the moment, we have 4.)
 class QuestionSet(db.Model):
@@ -121,6 +125,11 @@ class QuestionSet(db.Model):
     def __repr__(self):
         return self.name
 
+    @validates('number_of_questions')
+    def validate_number_of_questions(self, key, number_of_questions):
+      if number_of_questions < 0:
+        raise AssertionError('Number of questions can be no less than 0. Provided: {}'.format(number_of_questions))
+      return number_of_questions
 
 # MCQ option table 
 class Option(db.Model):
@@ -142,7 +151,11 @@ class Score(db.Model):
     score = db.Column(db.Integer)
     time_taken = db.Column(db.Time)
 
-
+    @validates('score')
+    def validate_score(self, key, score):
+      if score < 0:
+        raise AssertionError('Score can be no less than 0. Provided: {}'.format(score))
+      return score
 
 # class Attempt(db.Model):
 #   id = db.Column(db.Integer, primary_key=True)

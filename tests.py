@@ -1,6 +1,6 @@
 import unittest, os
 from app import app, db
-from app.models import CurrentQuestion, Option, Question, QuestionSet, User, Post #Attempt, Answer
+from app.models import CurrentQuestion, Option, Question, QuestionSet, User, Post, Score #Attempt, Answer
 
 class tests(unittest.TestCase):
   def setUp(self):
@@ -13,7 +13,7 @@ class tests(unittest.TestCase):
     u2 = User(id='99999999', username='JohnSmith', email='John.Smith@email.com', about_me='I am indifferent of cats')
     db.session.add(u1)
     db.session.add(u2)
-
+    
     for i in range(1, 5):
       q = Question(question="Test{}".format(i), answer="Answer{}".format(i))
       db.session.add(q)
@@ -23,6 +23,8 @@ class tests(unittest.TestCase):
         o = Option(question_id=i, option_value="Answer{}".format(j))
         db.session.add(o)
 
+    questionSet = QuestionSet(name="Test Module", number_of_questions=4)
+    db.session.add(questionSet)
     db.session.commit()
 
 # User specific tests
@@ -41,7 +43,7 @@ class tests(unittest.TestCase):
 
   def test_user_about_me(self):
     u = User.query.first()
-    self.assertFalse(u.about_me, "About me is not None.")
+    self.assertFalse(u.about_me, "About me is not empty.")
     _str = "Updated about me with 36 characters."
     u.about_me = _str
     self.assertEqual(len(u.about_me), len(_str), "About me not set correctly (Length of string).")
@@ -110,7 +112,7 @@ class tests(unittest.TestCase):
 #  def test_post_body_validation(self):
     # Validation must be implemented first.
 
-# Question specific tests
+# Question specific tests (Question, QuestionSet, Option, CurrentQuestion)
   def test_question_options(self):
     questions = Question.query.all()
     for question in questions:
@@ -118,6 +120,34 @@ class tests(unittest.TestCase):
       for o in question.option_child:
         opt.append(o.option_value)
       self.assertIn(question.answer, opt, "Answer {} not present in question's option children.".format(question.answer))
+
+  def test_question_set_score(self):
+    set = QuestionSet.query.first()
+    score = Score(user_id=User.query.first(), questionset_id=set.id)
+    with self.assertRaises(AssertionError):
+      score.score =-1
+    score.score = 0
+    score.score = 1
+
+  def test_questionset_num_questions(self):
+    set = QuestionSet.query.first()
+    with self.assertRaises(AssertionError):
+      set.number_of_questions=-1
+    set.number_of_questions=0
+
+  def test_current_question_number(self):
+    questions = Question.query.all()
+    set = QuestionSet.query.first()
+    set.number_of_questions=len(questions)
+    currQuestion = CurrentQuestion(question_id=questions[1].id, questionset_id=set.id, question_number=1)
+    with self.assertRaises(AssertionError):
+      currQuestion.question_number = 0
+      currQuestion.question_number = len(questions) + 1
+    currQuestion.question_number = 1
+    currQuestion.question_number = len(questions)
+    
+    
+    
 
 # # Quiz Attempt specific tests
 #   def test_answer_count_in_range(self):
