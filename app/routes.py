@@ -15,8 +15,11 @@ from dateutil        import tz
 # Home view
 @app.route('/', methods = ['GET','POST'])
 def home():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter_by(page="home").paginate(
+      page, app.config['POSTS_PER_PAGE'], False)
     questionSet = QuestionSet.query.all()
-    return render_template('home.html', questionSet = questionSet)
+    return render_template('home.html', questionSet = questionSet, posts=posts.items)
 
 # More Learning view
 @app.route('/more_learning')
@@ -28,6 +31,18 @@ def more_learning():
 @login_required
 def scoreboard():
     return render_template('scoreboard.html')
+
+# Delete Post view
+@app.route('/delete_post', methods = ['GET','POST'])
+@login_required
+def delete_post():
+  post=Post.query.filter_by(id=request.args.get('postId')).first_or_404()
+  db.session.delete(post)
+  db.session.commit()
+  next_page = request.args.get('next') # save requested (protected) URL
+  if not next_page or url_parse(next_page).netloc !='':
+      return redirect(url_for('user_profile', username=current_user.username))
+  return redirect(url_for(next_page))
 
 # Login view (redirect authenticated user to home)
 @app.route('/login', methods=['GET', 'POST'])

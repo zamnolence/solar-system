@@ -75,26 +75,26 @@ class tests(unittest.TestCase):
     self.assertEqual(len(p.body), len(_str), "Post length incorrect.")
     self.assertEqual(p.body, _str, "Post body does not equal the string given.")
 
-  def test_post_voting(self):
-    u = User.query.first()
-    _str = "This is a test post with 39 characters."
-    p = Post(user_id=u.id, body=_str, page="test_page")
-    db.session.add(p)
-    db.session.commit()
+  # def test_post_voting(self):
+  #   u = User.query.first()
+  #   _str = "This is a test post with 39 characters."
+  #   p = Post(user_id=u.id, body=_str, page="test_page")
+  #   db.session.add(p)
+  #   db.session.commit()
 
-    self.assertEqual(p.upvotes, 0, "Initial upvote count noy 0.")
-    self.assertEqual(p.downvotes, 0, "Initial downvote count not 0.")
-    self.assertEqual(p.vote_spread(), 0, "Initial vote spread not 0.")
+  #   self.assertEqual(p.upvotes, 0, "Initial upvote count noy 0.")
+  #   self.assertEqual(p.downvotes, 0, "Initial downvote count not 0.")
+  #   self.assertEqual(p.vote_spread(), 0, "Initial vote spread not 0.")
 
-    for i in range(17):
-      p.upvote()
+  #   for i in range(17):
+  #     p.upvote()
 
-    for i in range(5):
-      p.downvote()
+  #   for i in range(5):
+  #     p.downvote()
 
-    self.assertEqual(p.upvotes, 17, "Upvote count incorrect.")
-    self.assertEqual(p.downvotes, 5, "Downvote count incorrect.")
-    self.assertEqual(p.vote_spread(), 12, "Vote spread incorrect.")
+  #   self.assertEqual(p.upvotes, 17, "Upvote count incorrect.")
+  #   self.assertEqual(p.downvotes, 5, "Downvote count incorrect.")
+  #   self.assertEqual(p.vote_spread(), 12, "Vote spread incorrect.")
 
   def test_delete_post(self):
     u = User.query.first()

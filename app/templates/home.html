@@ -5,7 +5,6 @@
         Home | Solar System Quiz
     </title>
 {% endblock %}
-
 {% block body %}
 
     <!-- Welcome messages and about -->
@@ -21,7 +20,10 @@
             </p>
         {% endif %}
     </div>
-
+    {% set page='home' %}
+    {% for post in posts %}
+    {% include '_post.html' %}
+    {% endfor %}
     {% if current_user.is_authenticated %}
     <!-- Content section -->
     <div class="container">

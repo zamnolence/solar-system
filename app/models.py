@@ -62,21 +62,24 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     page = db.Column(db.String)
-    upvotes = db.Column(db.Integer, default=0)
-    downvotes = db.Column(db.Integer, default=0)
+    # upvotes = db.Column(db.Integer, default=0)
+    # downvotes = db.Column(db.Integer, default=0)
 
     def __repr__(self):
-      return '<Post ID: {}, Char Count: {}, Page: {}, Votes- Up: {} Down: {}>'.format(
-        self.id, len(self.body), self.page, self.upvotes, self.downvotes)
+      return '<Post ID: {}, Char Count: {}, Page: {}>'.format(
+        self.id, len(self.body), self.page)
 
-    def upvote(self):
-      self.upvotes += 1
+    def deletePost(self):
+      db.session.delete(self)
+      db.session.commit()
+    # def upvote(self):
+    #   self.upvotes += 1
 
-    def downvote(self):
-      self.downvotes += 1
+    # def downvote(self):
+    #   self.downvotes += 1
 
-    def vote_spread(self):
-      return self.upvotes - self.downvotes
+    # def vote_spread(self):
+    #   return self.upvotes - self.downvotes
 
 # Question table
 class Question(db.Model):
@@ -107,7 +110,7 @@ class CurrentQuestion(db.Model):
 
     @validates('question_number')
     def validate_question_number(self, key, question_number):
-      totalQuestions = QuestionSet.query.get(self.questionset_id).number_of_questions
+      totalQuestions = QuestionSet.query.get(self.questionset_id)
       if question_number <= 0 or question_number > totalQuestions:
         raise AssertionError(
           'Current Question number must be within range (1-{}). Provided: {}'.format(totalQuestions, question_number))
