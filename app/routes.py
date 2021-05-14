@@ -14,6 +14,8 @@ from dateutil        import tz
 
 # Home view
 @app.route('/', methods = ['GET','POST'])
+@app.route('/index', methods = ['GET','POST'])
+@app.route('/home', methods = ['GET','POST'])
 def home():
     questionSet = QuestionSet.query.all()
     return render_template('home.html', questionSet = questionSet)
