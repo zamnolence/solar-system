@@ -25,10 +25,12 @@
     <div class="container">
         <h3>Learning Modules</h3>
         <!-- Select one of the modules to start -->
-        {% for i in range(1, 5) %}
-        <a href="{{ url_for('learning_module', module='sun') }}">
-            {{ i }}
-        </a>
+        {% set modules={'vacuum':'The Vacuum of Space', 'planets':'The Planets', 'satellites':'The Satellites', 'sun':'The Sun'} %}
+        {% for key, value in modules.items() %}
+            <button id=key onclick="window.location.href='{{ url_for('learning_module', module=key) }}';"
+                style="height:150px; width:150px;border: 1px solid; word-wrap:normal; margin:5px; padding:5px;">
+            {{ value }}
+            </button>
         {% endfor %}
     </div>
 
