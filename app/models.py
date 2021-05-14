@@ -123,6 +123,7 @@ class QuestionSet(db.Model):
     __tablename__ = 'questionset'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(64))
+    module = db.Column(db.String(64))
     number_of_questions = db.Column(db.Integer)
     child = db.relationship("CurrentQuestion")
     score_child = db.relationship('Score', backref= 'questionset_parent')
