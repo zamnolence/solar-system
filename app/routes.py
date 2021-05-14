@@ -77,7 +77,12 @@ def user_profile(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
     posts = user.posts.paginate(
-      page, app.config['POSTS_PER_PAGE'], False)
+      page, 5, False)
+    next_url = url_for('user_profile', username=username, page=posts.next_num) \
+      if posts.has_next else None
+    prev_url = url_for('user_profile', username=username, page=posts.prev_num) \
+      if posts.has_prev else None
+
     score_dict = [] # initialise module score dictionary
     total = 0       # initialise total score as zero
     # get all scores of current_user
@@ -86,7 +91,8 @@ def user_profile(username):
         score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
         scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
-    return render_template('user_profile.html', user=user, score=total, posts=posts.items, scoreSorted = scoreSorted)
+    return render_template('user_profile.html', user=user, score=total, posts=posts.items, 
+    scoreSorted = scoreSorted, next_url=next_url, prev_url=prev_url)
 
 # Edit profile view
 @app.route('/edit_profile', methods=['GET', 'POST'])
