@@ -21,6 +21,7 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     score_child = db.relationship("Score", backref = 'user_parent')
+    quiz_unlocked = db.Column(db.Integer, default=0)
 
     def __repr__(self):
       return '<User: {}, ID: {}, Total Posts: {}>'.format(
@@ -62,8 +63,8 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     page = db.Column(db.String)
-    # upvotes = db.Column(db.Integer, default=0)
-    # downvotes = db.Column(db.Integer, default=0)
+    upvotes = db.Column(db.Integer, default=0)
+    downvotes = db.Column(db.Integer, default=0)
 
     def __repr__(self):
       return '<Post ID: {}, Char Count: {}, Page: {}>'.format(
@@ -72,14 +73,14 @@ class Post(db.Model):
     def deletePost(self):
       db.session.delete(self)
       db.session.commit()
-    # def upvote(self):
-    #   self.upvotes += 1
+    def upvote(self):
+      self.upvotes += 1
 
-    # def downvote(self):
-    #   self.downvotes += 1
+    def downvote(self):
+      self.downvotes += 1
 
-    # def vote_spread(self):
-    #   return self.upvotes - self.downvotes
+    def vote_spread(self):
+      return self.upvotes - self.downvotes
 
 # Question table
 class Question(db.Model):
