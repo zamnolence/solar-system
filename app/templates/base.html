@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- External CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/theme.css') }}">
 
     <!-- Fake favicon to avoid "GET /favicon.ico HTTP/1.1" 404 - request -->
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
@@ -24,9 +25,6 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <!-- External JavaScript -->
-    <!-- <script src="../static/script.js"></script> -->
 
     <!-- Load an icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,7 +39,7 @@
 <body>
     {% block navbar %}
     <nav class="navbar navbar-default">
-        <div class="container">
+       
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -68,12 +66,12 @@
                     {% endif %}
                 </ul>
             </div>
-        </div>
+        
     </nav>
     {% endblock %} <!-- End navbar block -->
 
     <!-- div for showing score -->
-    <div class="container">
+    <div>
         <div class="points" id="points"><p>Scores : <b>0</b></p></div>
     </div>
     <!-- Not show score at the moment (will toggle for specific pages)-->
@@ -81,9 +79,9 @@
     {% block body %}{% endblock %}
 
     <!-- footer -->
-    <div class="container" style='bottom:0; width:100%; '>
+    <footer>
         <p>This web application is part of CITS5505 project 2 <br>
            developed by Doungporn Wiwatanapataphee and Jason Clark.</p>
-    <div>
+    </footer>
 </body>
 </html>

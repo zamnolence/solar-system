@@ -1,0 +1,111 @@
+/* 
+* This style sheet is used by all pages for consistency.
+* Media rule for small/medium device also included 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: black;
+    color: azure;
+}
+
+/*---------------- Enable smooth scrolling -----------*/
+html {
+    scroll-behavior: smooth;
+  }
+
+
+/*---------------- Navigation bar style --------------*/
+.navbar {
+    font-family: 'Audiowide', cursive;
+    background-color: black;
+    border-color: black;
+}
+
+.nav a {
+    font-size: 1.2em !important;
+}
+
+/*----------------- Carousel style --------------------*/
+.carousel-inner img {
+    width: 100%;
+    margin: auto;
+}
+
+.carousel .item {
+    height: 530px;
+}
+
+.item img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+}
+  
+.carousel-caption h3 {
+    color: azure !important;
+}
+  
+@media (max-width: 530px) {
+    .carousel-caption {
+      display: none; /* hide caption for small screen*/
+    }
+}
+
+/*---------------*/
+
+
+.module-button {
+    height: 150px; 
+    width: 150px;
+    border: 1px solid; 
+    word-wrap: normal; 
+    margin: 5px;
+    padding: 5px;
+    color:black;
+}
+
+.quiz-button {
+    height: 75px;
+    width: 150px;
+    border: 1px solid;
+    word-wrap: normal;
+    margin: 5px;
+    padding: 5px;
+    color: black;
+}
+
+/* Form style */
+form {
+    color: black;
+}
+
+/* quiz style */
+
+.qBtn {
+    color: black;
+}
+
+.submitQ {
+    color: black;
+}
+
+/*----------------- Footer style ------------------ */
+footer {
+    font-size: 11px;
+    background: black;
+    color:grey;
+    padding: 3rem 1rem;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
