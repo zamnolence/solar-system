@@ -4,7 +4,7 @@ import random
 from flask           import render_template, flash, redirect, url_for, request, jsonify
 from flask_login     import current_user, login_user, logout_user, login_required
 from app             import app, db
-from app.forms       import LoginForm, RegistrationForm, EditProfileForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.forms       import LoginForm, RegistrationForm, EditProfileForm, ResetPasswordRequestForm, ResetPasswordForm, PostForm
 from app.models      import User, Post, Question, CurrentQuestion, QuestionSet, Option, Score
 from app.email       import send_password_reset_email
 from app.controllers import UserController, QuizController
@@ -15,9 +15,6 @@ from dateutil        import tz
 # Home view
 @app.route('/', methods = ['GET','POST'])
 def home():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.filter_by(page="home").paginate(
-      page, app.config['POSTS_PER_PAGE'], False)
     questionSet = QuestionSet.query.all()
     return render_template('home.html', questionSet = questionSet)
 
@@ -144,9 +141,24 @@ def reset_password(token):
 @login_required
 def learning_module(module):
   page = request.args.get('page', 1, type=int)
-  posts = Post.query.filter_by(page='module').paginate(
+  posts = Post.query.filter_by(page=module).paginate(
     page, app.config['POSTS_PER_PAGE'], False)
-  return render_template('modules/learning_module.html', module=module, posts=posts.items)
+
+  form = PostForm()
+  if form.validate_on_submit():
+    post = Post(body=form.post.data, author=current_user, page=module)
+    db.session.add(post)
+    db.session.commit()
+    flash('Your post is now live!')
+    next_url = url_for('learning_module', module=module, page=posts.next_num) \
+      if posts.has_next else None
+    prev_url = url_for('learning_module', module=module, page=posts.prev_num) \
+      if posts.has_prev else None
+    return render_template('modules/learning_module.html', module=module, form=form,
+      posts=posts.items, next_url=next_url,
+      prev_url=prev_url)
+
+  return render_template('modules/learning_module.html', module=module, posts=posts.items, form=form)
 
 # Quiz view
 @app.route('/quiz', methods = ['GET','POST'])
