@@ -113,7 +113,7 @@ class tests(unittest.TestCase):
     # Validation must be implemented first.
 
 # Question specific tests (Question, QuestionSet, Option, CurrentQuestion)
-  def test_question_options(self):
+  def test_question_answer_present_in_options(self):
     questions = Question.query.all()
     for question in questions:
       opt=[]

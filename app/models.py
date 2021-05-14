@@ -110,7 +110,8 @@ class CurrentQuestion(db.Model):
 
     @validates('question_number')
     def validate_question_number(self, key, question_number):
-      totalQuestions = QuestionSet.query.get(self.questionset_id)
+      set = QuestionSet.query.get(self.questionset_id)
+      totalQuestions = set.number_of_questions
       if question_number <= 0 or question_number > totalQuestions:
         raise AssertionError(
           'Current Question number must be within range (1-{}). Provided: {}'.format(totalQuestions, question_number))
