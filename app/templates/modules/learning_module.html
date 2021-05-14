@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Learning Modules | Solar System Quiz</title>
+{% endblock %}
+{% block body %}
+{% include 'modules/_{}'.format(module) %}
+
+<!-- User's Posts -->
+<div class="container">
+  {% set page='learning_modules' %}
+  {% for post in posts %}
+  {% include '_post.html'%}
+  {% endfor %}
+  {% if prev_url %}
+  <a href="{{ prev_url }}">Newer posts</a>
+  {% endif %}
+  {% if next_url %}
+  <a href="{{ next_url }}">Older posts</a>
+  {% endif %}
+</div>
+{% endblock %}

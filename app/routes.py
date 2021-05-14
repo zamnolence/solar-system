@@ -19,7 +19,7 @@ def home():
     posts = Post.query.filter_by(page="home").paginate(
       page, app.config['POSTS_PER_PAGE'], False)
     questionSet = QuestionSet.query.all()
-    return render_template('home.html', questionSet = questionSet, posts=posts.items)
+    return render_template('home.html', questionSet = questionSet)
 
 # More Learning view
 @app.route('/more_learning')
@@ -32,7 +32,7 @@ def more_learning():
 def scoreboard():
     return render_template('scoreboard.html')
 
-# Delete Post view
+# Delete Post
 @app.route('/delete_post', methods = ['GET','POST'])
 @login_required
 def delete_post():
@@ -138,6 +138,15 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_pass.html', form=form)
+
+# Learning Module view
+@app.route('/learning_module', methods=['GET', 'POST'])
+@login_required
+def learning_module(module):
+  page = request.args.get('page', 1, type=int)
+  posts = Post.query.filter_by(page=module).paginate(
+    page, app.config['POSTS_PER_PAGE'], False)
+  return render_template('modules/learning_module.html', module=module, posts=posts.items)
 
 # Quiz view
 @app.route('/quiz', methods = ['GET','POST'])

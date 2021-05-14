@@ -60,6 +60,7 @@ class UserController():
         return redirect(url_for('result'))
 
 
+
 # Helper class for generating quiz
 class QuizController():
     def generate_quiz():
