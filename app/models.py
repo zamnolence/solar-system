@@ -113,7 +113,7 @@ class CurrentQuestion(db.Model):
     def validate_question_number(self, key, question_number):
       set = QuestionSet.query.get(self.questionset_id)
       totalQuestions = set.number_of_questions
-      if question_number <= 0 or question_number > totalQuestions:
+      if int(question_number) <= 0 or int(question_number) > totalQuestions:
         raise AssertionError(
           'Current Question number must be within range (1-{}). Provided: {}'.format(totalQuestions, question_number))
       return question_number
@@ -132,7 +132,7 @@ class QuestionSet(db.Model):
 
     @validates('number_of_questions')
     def validate_number_of_questions(self, key, number_of_questions):
-      if number_of_questions < 0:
+      if int(number_of_questions) < 0:
         raise AssertionError('Number of questions can be no less than 0. Provided: {}'.format(number_of_questions))
       return number_of_questions
 
@@ -158,7 +158,7 @@ class Score(db.Model):
 
     @validates('score')
     def validate_score(self, key, score):
-      if score < 0:
+      if  int(score) < 0:
         raise AssertionError('Score can be no less than 0. Provided: {}'.format(score))
       return score
 
