@@ -36,10 +36,10 @@ def delete_post():
   post=Post.query.filter_by(id=request.args.get('postId')).first_or_404()
   db.session.delete(post)
   db.session.commit()
-  next_page = request.args.get('next') # save requested (protected) URL
-  if not next_page or url_parse(next_page).netloc !='':
+  module = request.args.get('module') # save requested (protected) URL
+  if not module:
       return redirect(url_for('user_profile', username=current_user.username))
-  return redirect(url_for(next_page))
+  return redirect(url_for('learning_module', module=module))
 
 # Login view (redirect authenticated user to home)
 @app.route('/login', methods=['GET', 'POST'])
@@ -143,8 +143,12 @@ def learning_module(module):
   page = request.args.get('page', 1, type=int)
   posts = Post.query.filter_by(page=module).paginate(
     page, app.config['POSTS_PER_PAGE'], False)
-
+  next_url = url_for('learning_module', module=module, page=posts.next_num) \
+    if posts.has_next else None
+  prev_url = url_for('learning_module', module=module, page=posts.prev_num) \
+    if posts.has_prev else None
   form = PostForm()
+  
   if form.validate_on_submit():
     post = Post(body=form.post.data, author=current_user, page=module)
     db.session.add(post)
@@ -154,11 +158,13 @@ def learning_module(module):
       if posts.has_next else None
     prev_url = url_for('learning_module', module=module, page=posts.prev_num) \
       if posts.has_prev else None
-    return render_template('modules/learning_module.html', module=module, form=form,
+    posts = Post.query.filter_by(page=module).paginate(
+      page, app.config['POSTS_PER_PAGE'], False)
+    form.post.data=""
+
+  return render_template('modules/learning_module.html', module=module, form=form,
       posts=posts.items, next_url=next_url,
       prev_url=prev_url)
-
-  return render_template('modules/learning_module.html', module=module, posts=posts.items, form=form)
 
 # Quiz view
 @app.route('/quiz', methods = ['GET','POST'])

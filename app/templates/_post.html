@@ -10,7 +10,7 @@
   </tr>
   {% if current_user.id == post.user_id %}
   <tr valign="bottom">
-    <a href="{{ url_for('delete_post', postId=post.id, next=page) }}">Delete Post</a>
+    <a href="{{ url_for('delete_post', postId=post.id, module=module) }}">Delete Post</a>
   </tr>
   {% endif %}
 </table>

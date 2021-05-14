@@ -57,12 +57,14 @@
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('user_profile', username=current_user.username) }}">{{ current_user.username }} Profile</a></li>
+                    <li><a href="{{ url_for('more_learning') }}">More Learning</a></li>
                     <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
                     <!-- Nav bar for anonymous user -->
                     {% else %}
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('more_learning') }}">More Learning</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -79,7 +81,7 @@
     {% block body %}{% endblock %}
 
     <!-- footer -->
-    <div class="container" style='bottom:0; position:absolute; '>
+    <div class="container" style='bottom:0; width:100%; '>
         <p>This web application is part of CITS5505 project 2 <br>
            developed by Doungporn Wiwatanapataphee and Jason Clark.</p>
     <div>
