@@ -1,5 +1,0 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <h1>Scoreboard to go here</h1>
-{% endblock %}
