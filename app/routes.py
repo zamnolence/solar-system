@@ -25,12 +25,6 @@ def home():
 def more_learning():
     return render_template('more_learning.html')
 
-# Scoreboard view
-@app.route('/scoreboard')
-@login_required
-def scoreboard():
-    return render_template('scoreboard.html')
-
 # Delete Post
 @app.route('/delete_post', methods = ['GET','POST'])
 @login_required
