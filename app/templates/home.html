@@ -134,13 +134,15 @@
   
   <!-- Anonymous users -->
   {% else %}
-  <div class="container-fluid vertical-center">
+  <div class="container-fluid">
     <p>Please register or login to our website before beginning the journey!</p>
-    <div class="col-xs-4">
+    <div class="row">
+    <div class="col-xs-4 vertical-center">
         <button class="login-button" onclick="window.location='/login'"><b>Login</b></button>
     </div>
     <div class="col-xs-4">
         <button class="register-button" onclick="window.location='/register'"><b>Register</b></button>
+    </div>
     </div>
   </div>
   {% endif %}

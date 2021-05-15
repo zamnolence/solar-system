@@ -14,6 +14,8 @@ body {
     font-family: 'Space Mono', monospace;
     background-color: black;
     color: azure;
+    padding-bottom: 60px;
+    margin-bottom: 100px;
 }
 
 /*---------------- Enable smooth scrolling -----------*/
@@ -27,6 +29,7 @@ html {
     font-family: 'Audiowide', cursive;
     background-color: black;
     border-color: black;
+    top: 0;
 }
 
 .nav a {
@@ -67,6 +70,7 @@ html {
     min-height: 100%;
     display: flex;
     align-items: center;
+    margin-left: 12.5%;
   }
 
 
@@ -88,6 +92,37 @@ html {
     width: 100%;
     border: 1px solid;
     border-color: black;
+    word-wrap: normal; 
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
+
+.login-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 300px;
+    margin-top: -200px;
+    width: 400px;
+    margin-left: -200px;
+    color: black;
+    padding-left: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+.login-container a {
+    text-decoration: none;
+}
+
+.signin-button {
+    background-color: #121212;
+    height: 50px; 
+    width: 100%;
+    border: 1px solid;
+    border-color: #ffffff;
+    color: azure;
     word-wrap: normal; 
     margin: 0;
     padding: 0;
@@ -152,7 +187,9 @@ form {
 }
 
 /*----------------- Footer style ------------------ */
+
 footer {
+    position: fixed;
     font-size: 11px;
     background: black;
     color:grey;
@@ -161,5 +198,4 @@ footer {
     left: 0;
     width: 100%;
   }
-
 
