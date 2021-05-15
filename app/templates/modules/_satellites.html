@@ -1,12 +1,21 @@
-<h1>Satellites</h1>
+<div class="container">
+<h1><i class="fa fa-space-shuttle fa-fw"></i>&nbsp; Satellites</h1>
+<br>
 <p>
   When we say “satellite”, it generally refers to two things: 
   natural satellites and artificial (man-made) satellites. 
   These satellites are known to orbits a planet or a star [1]. 
   We will briefly go through both in this section.
 </p>
-<div>
-  <h2>Natural Satellites</h2>
+<br>
+<img class='center-block' style="width: 70%;" src="{{ url_for('static', filename='img/satellites.jpg') }}" alt="The Sun" />
+<br>
+
+<div class="sat-tabs">
+  <input type="radio" name="tabs" id="tab1" checked="checked">
+  <label style="margin-left:2em;" for="tab1">Natural Satellites</label>
+  <div class="tab">
+    <h2>Natural Satellites</h2>
   <p>
     A natural satellite is a moon, a planet, or an astronomical 
     body that orbits a larger planet or star [1]. These astronomical 
@@ -26,7 +35,13 @@
     actually named after mythological characters from a wide variety 
     of cultures and literature!
   </p>
-  <h3>The Moon</h3>
+    
+  </div>
+  
+  <input type="radio" name="tabs" id="tab2">
+  <label for="tab2">The Moon</label>
+  <div class="tab">
+    <h3>The Moon</h3>
   <p>
     The most important moon (for us) is the Earth’s moon. It is 
     Earth’s only natural satellite and the largest moon in the 
@@ -79,9 +94,13 @@
     omitted two out of four basic human needs and hence stop us from 
     having a settlement on the Moon.
   </p>
-</div>
-<div>
-  <h2>Artificial Satellites</h2>
+    
+  </div>
+  
+  <input type="radio" name="tabs" id="tab3">
+  <label for="tab3">Solar Radiation</label>
+  <div class="tab">
+    <h2>Artificial Satellites</h2>
   <p>
     Usually, the word "satellite" refers to a man-made machine that 
     is launched into space and orbit around Earth or another body in 
@@ -109,13 +128,24 @@
     and phone signal instantly across different locations on Earth, 
     allowing a smooth communication no matter where you are [6].  
   </p>
+    
+  </div>
 </div>
 
-<button class="quiz-button" onclick="window.location='/quiz?questionsetID=4';">
-  Quiz!
-</button>
 
-<div>
+
+
+
+
+
+
+
+
+<div class="container">
+  <br>
+    <h4> Ready for the quiz? Click 
+    <button class="start-quiz" onclick="window.location='/quiz?questionsetID=3';">here</button>
+    to start!</h4>
   <h2>References</h2>
   <ol>
     <li>D. Stillman. “What is a Satellite?” NASA.gov. https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-is-a-satellite-58.html (accessed May 7, 2021).</li>
@@ -125,4 +155,5 @@
     <li>Institute of Physics. “How could we live on the Moon?” IOP.org. https://www.iop.org/explore-physics/moon/how-could-we-live-on-the-moon (accessed May 7, 2021).</li>
     <li>Wikipedia. “Satellite”. Wikipedia.com. https://en.wikipedia.org/wiki/Satellite (accessed May 7, 2021).</li>
   </ol>
+</div>
 </div>

@@ -1,12 +1,17 @@
 <div class="container">
   <h1><i class="fa fa-space-shuttle fa-fw"></i>&nbsp; The Planets</h1>
+  <br>
   <p>
     This simulated view of our solar system as shown below runs on real data
     provided by <a href="https://eyes.nasa.gov/">NASA's Eyes on the Solar System</a>. 
     The position of the planets, moons and spacecraft are shown where they are right now!
   </p>
+  <br>
   <iframe src="https://eyes.nasa.gov/apps/orrery/#/home" title="NASA's Eyes on the Solar System ">
   </iframe>
+  <br>
+  <br>
+  <br>
   <p>
     Select one of the planets to search more info from NASA!:
     <select id="planet-select" onchange="searchNASA()">
@@ -22,7 +27,7 @@
       <option value="PIA01492">Neptune</option>
     </select>
   </p>
-
+  <br>
   <div class="container">
     <div class="row">
       <div class="col-md-6" id="picture">
@@ -135,15 +140,7 @@
   <div class="container">
     <br>
     <h4> Ready for the quiz? Click 
-    <button style="height: 40px; 
-    width: auto;
-    border: 1px solid;
-    border-color: black;
-    background-color: #3700b3;
-    word-wrap: normal; 
-    margin: 0;
-    padding: 0;
-    border-radius: 12px;" id="start-quiz" onclick="window.location='/quiz?questionsetID=3';">here</button>
+    <button class="start-quiz" onclick="window.location='/quiz?questionsetID=3';">here</button>
     to start!</h4>
     
     <h2>References</h2>

@@ -199,6 +199,44 @@ iframe {
     height: 700px;
     border-color: black;
 }
+
+/*--------- Module: The Satellites ---------*/
+
+.sat-tabs {
+	display: flex;
+	flex-wrap: wrap;
+}
+.sat-tabs label {
+    text-align: center;
+	order: 1;
+    width: auto;
+	display: block;
+	padding: 1rem 2rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+    background: #03dac6;
+    font-weight: bold;
+    word-wrap: normal;
+    width: calc(90% * 1 / 3);
+}
+
+.sat-tabs .tab {
+    order: 99;
+    flex-grow: 1;
+    width: 100%;
+	display: none;
+    padding: 1rem;
+    background: black;
+}
+.sat-tabs input[type="radio"] {
+	display: none;
+}
+.sat-tabs input[type="radio"]:checked + label {
+	background: black;
+}
+.sat-tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+}
 ​
 
 /*--------- Module: The Sun ---------*/
@@ -224,6 +262,7 @@ iframe {
     word-wrap: normal;
     width: calc(90% * 1 / 3);
 }
+
 .tabs .tab {
     order: 99;
     flex-grow: 1;
@@ -244,7 +283,17 @@ iframe {
 
 /*------------- Quiz buttons ----------- */
 
-
+.start-quiz {
+    height: 35px; 
+    width: auto;
+    border: 1px solid;
+    border-color: black;
+    background-color: #3700b3;
+    word-wrap: normal; 
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
 
 .quiz-button {
     height: 75px;

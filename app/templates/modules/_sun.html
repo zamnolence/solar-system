@@ -1,9 +1,11 @@
 <div class="container">
 <h1><i class="fa fa-sun-o fa-fw"></i>&nbsp; The Sun</h1>
+<br>
 <img style="width: 100%;" src="{{ url_for('static', filename='img/thesun.jpg') }}" alt="The Sun" />
+<br>
 <div class="tabs">
   <input type="radio" name="tabs" id="tab1" checked="checked">
-  <label style="margin-left:2em;" for="tab1">Characteristics</label>
+  <label id="sun-tab" style="margin-left:2em;" for="tab1">Characteristics</label>
   <div class="tab">
     <h2>Characteristics</h2>
     <p>
@@ -27,7 +29,7 @@
   </div>
   
   <input type="radio" name="tabs" id="tab2">
-  <label for="tab2">Space Weather</label>
+  <label id="sun-tab" for="tab2">Space Weather</label>
   <div class="tab">
     <h2>Space Weather</h2>
     <p>
@@ -53,7 +55,7 @@
   </div>
   
   <input type="radio" name="tabs" id="tab3">
-  <label for="tab3">Solar Radiation</label>
+  <label id="sun-tab" for="tab3">Solar Radiation</label>
   <div class="tab">
     <h2>Solar Radiation and its Impact</h2>
     <p>
@@ -83,15 +85,7 @@
 <div class="container">
   <br>
   <h4> Ready for the quiz? Click 
-  <button style="height: 40px; 
-    width: auto;
-    border: 1px solid;
-    border-color: black;
-    background-color: #3700b3;
-    word-wrap: normal; 
-    margin: 0;
-    padding: 0;
-    border-radius: 12px;" id="start-quiz" onclick="window.location='/quiz?questionsetID=3';">here</button>
+  <button class="start-quiz" onclick="window.location='/quiz?questionsetID=3';">here</button>
   to start!</h4>
   <h2>References</h2>
   <ol>
