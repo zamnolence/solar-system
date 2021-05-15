@@ -34,8 +34,8 @@
         <h3>Welcome, {{ current_user.username }}!</h2>
         {% else %}
         <h3>Welcome to the Solar System!</h3>
-        <p>Let's explore the outer space.</p>
         {% endif %}
+        <p>Let's explore the outer space.</p>
       </div>
     </div>
 
@@ -112,16 +112,19 @@
 <div class="container">
   <!-- Home page  -->
     <h3><i class="fa fa-lightbulb-o fa-fw"></i>&nbsp; Our purpose</h3>
+    <br>
     <p>This website is developed as a learning space about the Solar System and 
     quiz to test your knownledge of the vacuum of space, the planets, the satellites, 
     and the Sun!</p>
+    <br><br>
 
     <h3><i class="fa fa-space-shuttle fa-fw"></i>&nbsp; Getting Started</h3>
-    
+    <br>
   <!-- Authenticated users -->
   {% if current_user.is_authenticated %}
     <!-- Content section -->
     <p>Choose one of the following topics to start the journey!</p>
+    <br><br>
     <!-- Select a learning module -->
     {% for qset in questionSet %}
       <div class='container-fluid col-xs-3'>
@@ -136,6 +139,7 @@
   {% else %}
   <div class="container-fluid">
     <p>Please register or login to our website before beginning the journey!</p>
+    <br><br>
     <div class="row">
     <div class="col-xs-4 vertical-center">
         <button class="login-button" onclick="window.location='/login'"><b>Login</b></button>

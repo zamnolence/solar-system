@@ -84,6 +84,7 @@ html {
     margin: 0;
     padding: 0;
     border-radius: 12px;
+    filter: brightness(1);
 }
 
 .register-button {
@@ -96,6 +97,15 @@ html {
     margin: 0;
     padding: 0;
     border-radius: 12px;
+    filter: brightness(1);
+}
+
+.login-button:hover{
+    filter: brightness(0.5);
+}
+
+.register-button:hover{
+    filter: brightness(0.5);
 }
 
 .login-container {
@@ -158,7 +168,13 @@ html {
     margin: 0;
     padding: 0;
     border-radius: 12px;
+    filter: brightness(1)
 }
+
+.module-button:hover{
+    filter: brightness(0.5);
+}
+
 
 button[id='The Vacuum of Space'] {
     background-color: #3700b3;
@@ -176,8 +192,31 @@ button[id='The Sun'] {
     background-color: #cf6679;
 }
 
+/*--------- Module: The Vacuum of space -------*/
 
-/*--------- Module: The Planets ---------*/
+article {
+    border: 1px solid;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 0rem;
+    transition: 0.2s linear;
+}
+
+article > h3 {
+    filter: brightness(0.5);
+}
+
+article > h3:hover {
+    filter: brightness(1);
+}
+
+article:focus {
+    font-size: 1em;
+    outline: 0;
+}
+
+/*------------ Module: The Planets ------------*/
 
 .planet-image {
     /* width: 100%; */
@@ -293,7 +332,14 @@ iframe {
     margin: 0;
     padding: 0;
     border-radius: 12px;
+    filter: brightness(1)
 }
+
+.start-quiz:hover{
+    filter: brightness(0.5);
+}
+
+.module-button
 
 .quiz-button {
     height: 75px;
