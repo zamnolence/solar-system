@@ -22,7 +22,17 @@
         document.getElementById("timer_label").innerHTML = format_time(timeLeft);
         if (timeLeft === 0) {
             clearInterval(timerInterval);
-            submit_results();   /* submit result when time runs out */
+            submitResults();   /* submit result when time runs out */
         }
     }, 1000);
  }
+
+
+ function format_time(time) {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    if (seconds < 10) {
+        seconds = `0${seconds}`;
+    }
+    return `${minutes}:${seconds}`;
+}

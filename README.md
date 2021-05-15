@@ -1,6 +1,6 @@
 # Solar System
 
-THe website is part of CITS5505 Agile Web Development project 2 developed by
+The website is part of CITS5505 Agile Web Development project 2 developed by
 
 ## Purpose
 

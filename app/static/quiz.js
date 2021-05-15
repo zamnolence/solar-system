@@ -80,7 +80,7 @@ function prevBtn(qNum) {
     $(`#Q${parseInt(qNum) - 1}Button`).click();
 }
 
-function submit_results() {
+function submitResults() {
 
     /* Calculate bonus score based on time used*/
     let available_time = parseInt(document.getElementById('totalTime').innerHTML);
