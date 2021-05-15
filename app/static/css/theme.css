@@ -147,7 +147,7 @@ html {
     text-decoration: none;
 }
 
-/*------- Learning Modules --------*/
+/*------------ Learning Modules -------------*/
 
 .module-button {
     height: 100px; 
@@ -176,7 +176,34 @@ button[id='The Sun'] {
     background-color: #cf6679;
 }
 
+
+/*--------- Module: The Planets ---------*/
+
+.planet-image {
+    /* width: 100%; */
+    height: 300px;
+}
+
+#planet-select {
+    color: black;
+}
+
+
+.desc {
+    display: none;
+}
+
+iframe {
+    margin-top: 50px;
+    width: 100%;
+    height: 700px;
+    border-color: black;
+}
+​
+
 /*------------- Quiz buttons ----------- */
+
+
 
 .quiz-button {
     height: 75px;

@@ -2,6 +2,7 @@
 
 {% block head %}
 <title>Learning Modules | Solar System Quiz</title>
+<script async type="text/javascript" src="{{ url_for('static', filename='learning_module.js') }}"></script>
 {% endblock %}
 {% block body %}
 {% include 'modules/_{}.html'.format(module) %}
