@@ -126,14 +126,23 @@
     {% for qset in questionSet %}
       <div class='container-fluid col-xs-3'>
         <button class="module-button" id="{{ qset.name }}" onclick="window.location.href='{{ url_for('learning_module', module=qset.module) }}'">
-          {{ qset.name }}
+          <b>{{ qset.name }}</b>
         </button>
       </div>
     {% endfor %}
-
+    <br>
+  
   <!-- Anonymous users -->
   {% else %}
+  <div class="container-fluid vertical-center">
     <p>Please register or login to our website before beginning the journey!</p>
+    <div class="col-xs-4">
+        <button class="login-button" onclick="window.location='/login'"><b>Login</b></button>
+    </div>
+    <div class="col-xs-4">
+        <button class="register-button" onclick="window.location='/register'"><b>Register</b></button>
+    </div>
+  </div>
   {% endif %}
 </div>
 

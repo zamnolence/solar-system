@@ -61,19 +61,68 @@ html {
     }
 }
 
-/*------- Learning Modules --------*/
+/*----------- Login and Register button -----------*/
+
+.vertical-center {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+  }
 
 
-.module-button {
-    height: 200px; 
+.login-button {
+    background-color: #3700b3;
+    height: 50px; 
     width: 100%;
-    border: 1px solid; 
+    border: 1px solid;
+    border-color: black;
     word-wrap: normal; 
     margin: 0;
     padding: 0;
-    color:black;
+    border-radius: 12px;
 }
 
+.register-button {
+    background-color: #cf6679;
+    height: 50px; 
+    width: 100%;
+    border: 1px solid;
+    border-color: black;
+    word-wrap: normal; 
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
+
+
+/*------- Learning Modules --------*/
+
+.module-button {
+    height: 100px; 
+    width: 100%;
+    border: 1px solid;
+    border-color: black;
+    word-wrap: normal; 
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
+
+button[id='The Vacuum of Space'] {
+    background-color: #3700b3;
+}
+
+button[id='The Planets'] {
+    background-color: #bb86fc;
+}
+
+button[id='Satellites'] {
+    background-color: #03dac6;
+}
+
+button[id='The Sun'] {
+    background-color: #cf6679;
+}
 
 /*------------- Quiz buttons ----------- */
 
