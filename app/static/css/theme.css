@@ -201,6 +201,47 @@ iframe {
 }
 ​
 
+/*--------- Module: The Sun ---------*/
+
+.clear {
+    clear: both;
+}
+
+.tabs {
+	display: flex;
+	flex-wrap: wrap;
+}
+.tabs label {
+    text-align: center;
+	order: 1;
+    width: auto;
+	display: block;
+	padding: 1rem 2rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+    background: #cf6679;
+    font-weight: bold;
+    word-wrap: normal;
+    width: calc(90% * 1 / 3);
+}
+.tabs .tab {
+    order: 99;
+    flex-grow: 1;
+    width: 100%;
+	display: none;
+    padding: 1rem;
+    background: black;
+}
+.tabs input[type="radio"] {
+	display: none;
+}
+.tabs input[type="radio"]:checked + label {
+	background: black;
+}
+.tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+}
+
 /*------------- Quiz buttons ----------- */
 
 
