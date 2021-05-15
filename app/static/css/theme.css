@@ -61,18 +61,21 @@ html {
     }
 }
 
-/*---------------*/
+/*------- Learning Modules --------*/
 
 
 .module-button {
-    height: 150px; 
-    width: 150px;
+    height: 200px; 
+    width: 100%;
     border: 1px solid; 
     word-wrap: normal; 
-    margin: 5px;
-    padding: 5px;
+    margin: 0;
+    padding: 0;
     color:black;
 }
+
+
+/*------------- Quiz buttons ----------- */
 
 .quiz-button {
     height: 75px;
@@ -109,3 +112,5 @@ footer {
     left: 0;
     width: 100%;
   }
+
+
