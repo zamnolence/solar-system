@@ -1,17 +1,40 @@
 # Solar System
 
 The website is part of CITS5505 Agile Web Development project 2 developed by
+- Jason Clark (22601257)
+- Doungporn Wiwatanapataphee (22774232)
 
 ## Purpose
 
-The website is developed as a learning space about the Solar System and quiz to test your knowledge of the vacuum of space, the planets, the satellites, and the Sun!.
+The website provides a basic knowledge of the Solar System including the vacuum of space, the planets, the satellites, and the sun. At the end of each lesson, users are able to test their knowledge by taking a quiz.
 
 ## Features
 
-1. User registration, login, password reset, and profile editing.
-2. Learning modules + quiz
-3. Individual topics leaderboards
-4. 
+1. User registration, login feature and password resetting.
+2. Four learning modules including:
+  - The Vacuum of Space
+  - The Planets
+  - The Satellites
+  - The Sun
+3. User's comment associated with each topic
+4. Multiple choice quiz associated with each topic
+  - Countdown timer
+  - Viewing scores in real time
+  - Answer validation
+  - Answer submission
+5. Topics' leaderboard
+6. User profile
+  - Timestamp of last visit
+  - Editting username and/or about me
+  - Aggregated scores from all topics
+  - Individual user scoreboard
+  - User performance of each topic
+  - Delete comments
+7. Aggregate Scoreboard
+
+## Data Model
+
+
 
 ## Getting Started
 
