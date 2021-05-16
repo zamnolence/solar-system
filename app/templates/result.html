@@ -5,18 +5,23 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container result-container">
 
     <!-- Results  -->
-    <h2>{{ moduleName }}</h2>
-    <h2>Score: {{ latestScore.score }}</h2> 
-    <!-- <h3 id="user-score"></h3> -->
+    <h2 class="result-module"><i class="fa fa-star fa-fw"></i>&nbsp;{{ moduleName }}&nbsp;<i class="fa fa-star fa-fw"></i></h2>
 
-    <!-- Restart (redirect to home) -->
-    <a href='/'><button id="restart-button">Restart</button></a>
+    <div class="row">
+        <div class="col-xs-8">
+            <h3 class="result-score">Score: {{ latestScore.score }} <br> ({{ timeTaken }})</h3> 
+        </div>
+        <div class="col-xs-4">
+            <a href='/'><button class="restart-button">Restart</button></a>
+        </div>
+    </div>
 
     <!-- Rank -->
-    <table style="width:100%;">
+    <h2 class="result-scoreboard">&nbsp;&nbsp; Scoreboard (Top 10)</h2>
+    <table class="result-table">
         <thead>
             <tr>
                 <th>Username</th>
