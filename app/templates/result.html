@@ -10,17 +10,8 @@
     <!-- Results  -->
     <h2 class="result-module"><i class="fa fa-star fa-fw"></i>&nbsp;{{ moduleName }}&nbsp;<i class="fa fa-star fa-fw"></i></h2>
 
-    <div class="row">
-        <div class="col-xs-8">
-            <h3 class="result-score">Score: {{ latestScore.score }} <br> ({{ timeTaken }})</h3> 
-        </div>
-        <div class="col-xs-4">
-            <a href='/'><button class="restart-button">Restart</button></a>
-        </div>
-    </div>
-
     <!-- Rank -->
-    <h2 class="result-scoreboard">&nbsp;&nbsp; Scoreboard (Top 10)</h2>
+    <h2 class="result-scoreboard">///////// Scoreboard \\\\\\\\\</h2>
     <table class="result-table">
         <thead>
             <tr>
@@ -46,6 +37,15 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="row">
+        <div class="col-xs-8">
+            <h3 class="result-score">Score: {{ latestScore.score }} <br> ({{ timeTaken }})</h3> 
+        </div>
+        <div class="col-xs-4">
+            <a href='/'><button class="restart-button">Restart</button></a>
+        </div>
+    </div>
 
 </div>
 
