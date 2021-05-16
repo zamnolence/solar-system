@@ -11,6 +11,7 @@ from app.controllers import UserController, QuizController
 from werkzeug.urls   import url_parse
 from datetime        import datetime
 from dateutil        import tz
+from sqlalchemy      import func
 
 # Home view
 @app.route('/', methods = ['GET','POST'])
@@ -89,12 +90,18 @@ def user_profile(username):
     total = 0       # initialise total score as zero
     # get all scores of current_user
     user_scores = Score.query.filter_by(user_id=user.id).all()
+    # get highest score from each module
+    vacuum_top = Score.query.filter_by(user_id=user.id, questionset_id=2).order_by(Score.score.desc())[0]
+    planet_top = Score.query.filter_by(user_id=user.id, questionset_id=3).order_by(Score.score.desc())[0]
+    satellite_top = Score.query.filter_by(user_id=user.id, questionset_id=4).order_by(Score.score.desc())[0]
+    sun_top = Score.query.filter_by(user_id=user.id, questionset_id=5).order_by(Score.score.desc())[0]
     for score in user_scores:
         score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
         scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
     return render_template('user_profile.html', user=user, score=total, posts=posts.items, 
-    scoreSorted = scoreSorted, next_url=next_url, prev_url=prev_url)
+    scoreSorted = scoreSorted, next_url=next_url, prev_url=prev_url, vacuum_top=vacuum_top, planet_top=planet_top,
+    satellite_top=satellite_top, sun_top=sun_top)
 
 # Edit profile view
 @app.route('/edit_profile', methods=['GET', 'POST'])
