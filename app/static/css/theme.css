@@ -1,6 +1,6 @@
 /* 
 * This style sheet is used by all pages for consistency.
-* Media rule for small/medium device also included 
+* 
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
@@ -158,6 +158,32 @@ html {
 }
 
 /*------------ Learning Modules -------------*/
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    right: 0;
+    left: 0;
+}
+
+.progress-bar-max {
+    display: block;
+    background-color: transparent;
+    height: 9px;
+    width: 100%; /* max at 100% */
+}
+  
+.progress-bar-scroll {
+    display: block;
+    background-color: #408697;
+    background-image: linear-gradient(to right, #d83030 0%,
+                                                #d8b930 50vw,
+                                                #6ec923 100vw); 
+    height: inherit;
+    width: 0%; /* start at 0 */
+}
+
 
 .module-button {
     height: 100px; 
@@ -320,6 +346,7 @@ iframe {
 	display: block;
 }
 
+
 /*------------- Quiz ----------- */
 
 .start-quiz {
@@ -338,6 +365,8 @@ iframe {
 .start-quiz:hover{
     filter: brightness(0.5);
 }
+
+
 
 /* .module-button */
 
@@ -401,7 +430,7 @@ iframe {
 
 .quiz-container {
     text-align: center;
-    padding: 50px;
+    padding: 20px;
     margin: 0 auto;
     margin-top: 20px;
     width: 70%;
@@ -413,15 +442,12 @@ iframe {
 
 .points-container {
     padding: 20px;
-    margin: 0 auto;
-    width: 70%;
     display: flex;
-    flex-wrap: wrap;
-    border-radius: 12px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .points {
-    background-color: #03dac6;
     border-radius: 12px;
     width: 150px;
     text-align: center;
@@ -432,42 +458,17 @@ iframe {
 }
 
 #timer {
-    background-color: #cf6679;
+
     border-radius: 12px;
     height: 40px;
     width: 150px;
     text-align: center;
     padding: 8px;
     font-size: 18px;
-    position: absolute;
+    /* position: absolute;
     right: 180px;
-    top: 96px;
+    top: 50px; */
     font-weight: bold;
-}
-
-.fixed-top {
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    right: 0;
-    left: 0;
-}
-
-.progress-bar-max {
-    display: block;
-    background-color: transparent;
-    height: 9px;
-    width: 100%; /* max at 100% */
-}
-  
-  .progress-bar-scroll {
-    display: block;
-    background-color: #408697;
-    background-image: linear-gradient(to right, #d83030 0%,
-                                                #d8b930 50vw,
-                                                #6ec923 100vw); 
-    height: inherit;
-    width: 0%; /* start at 0 */
 }
 
 /*----------------- Result page -------------------*/
