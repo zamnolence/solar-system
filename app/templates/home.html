@@ -133,7 +133,132 @@
         </button>
       </div>
     {% endfor %}
+    
+    <hr class="divider" />
+
+    <!-- Aggregate Scoreboard -->
+    <h3><i class="fa fa-th-large fa-fw"></i>&nbsp; Scoreboard</h3>
     <br>
+    <div class="row">
+    <div class="col-xs-6">
+    <!-- The Vacuum of Space -->
+    <h4>The Vacuum of space</h4>
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in vacuum_score %}
+        {%  if loop.index <= 5  %}   <!-- Show top 5 -->
+            <tr>
+                {% if current_user.id == score.user_parent.id %}
+                <td>{{ score.user_parent.username }} (You)</td>
+                {% else %}
+                <td>{{ score.user_parent.username }}</td>
+                {% endif %}
+                <td>{{ score.score }}</td>
+                <td>{{ score.time_taken }}</td>
+            </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="col-xs-6">
+    <!-- The Planets -->
+    <h4>The Planets</h4>
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in planet_score %}
+        {%  if loop.index <= 5  %}   <!-- Show top 5 -->
+            <tr>
+                {% if current_user.id == score.user_parent.id %}
+                <td>{{ score.user_parent.username }} (You)</td>
+                {% else %}
+                <td>{{ score.user_parent.username }}</td>
+                {% endif %}
+                <td>{{ score.score }}</td>
+                <td>{{ score.time_taken }}</td>
+            </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-6">
+    <!-- Satellites -->
+    <h4>Satellites</h4>
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in satellite_score %}
+        {%  if loop.index <= 5  %}   <!-- Show top 5 -->
+            <tr>
+                {% if current_user.id == score.user_parent.id %}
+                <td>{{ score.user_parent.username }} (You)</td>
+                {% else %}
+                <td>{{ score.user_parent.username }}</td>
+                {% endif %}
+                <td>{{ score.score }}</td>
+                <td>{{ score.time_taken }}</td>
+            </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="col-xs-6">
+    <!-- The Sun -->
+    <h4>The Sun</h4>
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in sun_score %}
+        {%  if loop.index <= 5  %}   <!-- Show top 5 -->
+            <tr>
+                {% if current_user.id == score.user_parent.id %}
+                <td>{{ score.user_parent.username }} (You)</td>
+                {% else %}
+                <td>{{ score.user_parent.username }}</td>
+                {% endif %}
+                <td>{{ score.score }}</td>
+                <td>{{ score.time_taken }}</td>
+            </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
   
   <!-- Anonymous users -->
   {% else %}

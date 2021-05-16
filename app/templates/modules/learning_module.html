@@ -20,12 +20,14 @@
     {{ form.hidden_tag() }}
     <p>
       {{ form.post.label }}<br>
+      <span class="post-form">
       {{ form.post(cols=32, rows=4) }}<br>
+      </span>
       {% for error in form.post.errors %}
       <span style="color: red;">[{{ error }}]</span>
       {% endfor %}
     </p>
-    <p>{{ form.submit() }}</p>
+    <p>{{ form.submit(class_="post-button") }}</p>
   </form>
   {% endif %}
 

@@ -18,8 +18,15 @@ from sqlalchemy      import func
 @app.route('/index', methods = ['GET','POST'])
 @app.route('/home', methods = ['GET','POST'])
 def home():
+    # get all module names
     questionSet = QuestionSet.query.all()
-    return render_template('home.html', questionSet = questionSet)
+    # get all users' scores from each module
+    vacuum_score = Score.query.filter_by(questionset_id=2).order_by(Score.score.desc()).all()
+    planet_score = Score.query.filter_by(questionset_id=3).order_by(Score.score.desc()).all()
+    satellite_score = Score.query.filter_by(questionset_id=4).order_by(Score.score.desc()).all()
+    sun_score = Score.query.filter_by(questionset_id=5).order_by(Score.score.desc()).all()
+    return render_template('home.html', questionSet=questionSet, vacuum_score=vacuum_score, 
+    planet_score=planet_score, satellite_score=satellite_score, sun_score=sun_score)
 
 # More Learning view
 @app.route('/more_learning')
@@ -201,3 +208,6 @@ def result():
 @app.route('/submit-results', methods=['POST'])
 def submit_results():
     return UserController.submit_results()
+
+
+# Scoreboard

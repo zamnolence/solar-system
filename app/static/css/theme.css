@@ -55,7 +55,12 @@ html {
 }
   
 .carousel-caption h3 {
-    color: azure !important;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 0px #595959;
+}
+
+.carousel-caption p {
+    text-shadow: 1px 1px 0px #595959;
 }
   
 @media (max-width: 530px) {
@@ -194,7 +199,8 @@ html {
     margin: 0;
     padding: 0;
     border-radius: 12px;
-    filter: brightness(1)
+    filter: brightness(1);
+    font-size: 18px;
 }
 
 .module-button:hover{
@@ -612,9 +618,28 @@ iframe {
     border-radius: 12px;
 }
 
-/* Divider for each section */
+/*-------------- Post -------------*/
+.post-button {
+    background-color: #03da15e5;
+    height: 50px;
+    width: 100px;
+    border: 1px solid black;
+    color: #ffffff;
+    word-wrap: normal; 
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
+
+.post-form {
+    color:black;
+}
+
+
+
+/* Divider for each section with transparent line */
 hr.divider  {
-	background: #03da15e5;
+	/* background: #03da15e5; */
 	border: 0;
     height: 5px;
     margin-top: 50px;
