@@ -320,7 +320,7 @@ iframe {
 	display: block;
 }
 
-/*------------- Quiz buttons ----------- */
+/*------------- Quiz ----------- */
 
 .start-quiz {
     height: 35px; 
@@ -339,7 +339,7 @@ iframe {
     filter: brightness(0.5);
 }
 
-.module-button
+/* .module-button */
 
 .quiz-button {
     height: 75px;
@@ -351,20 +351,103 @@ iframe {
     color: black;
 }
 
-/* Form style */
-form {
-    color: grey;
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
-/* quiz style */
-
 .qBtn {
-    color: black;
+    width: 70px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 25px;
+    filter: brightness(1);
+}
+.qBtn.unclicked:hover {
+    color: #ffffff;
+    filter: brightness(0.8);
+}
+.qBtn.unclicked {
+    color: #ffffff;
+    background-color: rgb(166, 166, 166);
+}
+.qBtn.clicked {
+    color: #ffffff;
+    background-color: #3700b3;
+    filter: brightness(1.2);
+}
+.qBtn.clicked:hover {
+    background-color: #3700b3;
+    filter: brightness(1);
 }
 
 .submitQ {
-    color: black;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 25px;
+    filter: brightness(1);
+    color: #ffffff;
+    background-color: #3700b3;
 }
+.submitQ:hover {
+    color: #ffffff;
+    filter: brightness(0.8);
+}
+
+
+
+.quiz-container {
+    text-align: center;
+    padding: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 12px;
+    background: #121212;
+}
+
+.points-container {
+    padding: 20px;
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 12px;
+}
+
+.points {
+    background-color: #03dac6;
+    border-radius: 12px;
+    width: 150px;
+    text-align: center;
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#timer {
+    background-color: #cf6679;
+    border-radius: 12px;
+    height: 40px;
+    width: 150px;
+    text-align: center;
+    padding: 8px;
+    font-size: 18px;
+    position: absolute;
+    right: 180px;
+    top: 96px;
+    font-weight: bold;
+}
+
+
 
 /*----------------- Footer style ------------------ */
 
@@ -377,5 +460,5 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-  }
+}
 
