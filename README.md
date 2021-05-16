@@ -34,38 +34,45 @@ The website provides a basic knowledge of the Solar System including the vacuum 
 
 ## Data Model
 
+![screenshot](db_schema.png)
 
+
+This database diagram was generated using Online Database Schema Design and Modeling Tool available at https://www.dbdesigner.net/.
 
 ## Getting Started
 
+Firstly, make sure that Python 3 is installed on your local machine.
 
+1. Clone the repository to local:
 ```
-python3 --version
+git clone https://github.com/zamnolence/solar-system.git
 ```
 
-
+2. On the local repository, create a virtual environment:
 ```
 python -m venv venv
 ```
 
-
+3. Activating the virtual environment:
 ```
 source venv/bin/activate
 ```
 
+4. Install all required packages and plugins from requirements.txt:
 ```
 pip install -r requirements.txt
 ```
 
+5. Run the web application:
 ```
 flask run
 ```
 
 
-### Testing
+## Testing
 
 ```
 python3 test.py
 ```
 
-### References
+## References
