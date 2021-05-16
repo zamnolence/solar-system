@@ -5,6 +5,12 @@
 <script async type="text/javascript" src="{{ url_for('static', filename='learning_module.js') }}"></script>
 {% endblock %}
 {% block body %}
+
+<!-- Progress bar -->
+<div class="progress-bar-max fixed-top">
+    <div class="progress-bar-scroll" id="progbar"></div>
+</div>
+
 {% include 'modules/_{}.html'.format(module) %}
 
 <!-- User's Posts -->

@@ -1,4 +1,4 @@
-/* AJAX: GET data from NASA API */
+/* Get data from NASA API */
 function searchNASA() {
   q = document.getElementById('planet-select').value
   $.ajax({
@@ -10,8 +10,6 @@ function searchNASA() {
     document.getElementById("planet-image").innerHTML = "<img class='planet-image center-block' src='"+img.collection.items[0].links[0].href+"'/>";
   }
 })};
-
-
 $(function(){
   $('#planet-select').change(function(){
       var selected = $(this).find(':selected').text();
@@ -19,6 +17,23 @@ $(function(){
       $('#' + selected).show();
   }).change()
 });
+
+
+/* Progress bar as we scroll */
+window.onscroll = function () { progbarFunc() };
+function progbarFunc() {
+  /* scrollTop measures distance from element's top to its topmost visible content */
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  /* Calculate height from height of document - viewable (client) height*/
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  /* Calculate percentage height we've already scrolled */
+  var scrolled = (winScroll / height) * 100;
+  /* Change the width of the progress bar */
+  document.getElementById("progbar").style.width = scrolled + "%";
+}
+
+
+
 
 // var selectPlanet = document.getElementById('planet-select')
 

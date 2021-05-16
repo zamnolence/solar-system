@@ -185,8 +185,9 @@ def result():
     # Get score and module of current user
     latest_score = Score.query.filter_by(user_id=current_user.id).all()[-1]
     latest_module_id = latest_score.questionset_id
+    latest_module = latest_score.questionset_parent.name
     scoreSorted = Score.query.filter_by(questionset_id=latest_module_id).order_by(Score.score.desc()).all()
-    return render_template('result.html', latestScore=latest_score, scoreSorted=scoreSorted)
+    return render_template('result.html', latestScore=latest_score, scoreSorted=scoreSorted, moduleName=latest_module)
 
 # Result submission
 @app.route('/submit-results', methods=['POST'])
