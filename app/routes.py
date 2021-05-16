@@ -12,6 +12,7 @@ from werkzeug.urls   import url_parse
 from datetime        import datetime
 from dateutil        import tz
 from sqlalchemy      import func
+from datetime        import time
 
 # Home view
 @app.route('/', methods = ['GET','POST'])
@@ -95,13 +96,14 @@ def user_profile(username):
 
     score_dict = [] # initialise module score dictionary
     total = 0       # initialise total score as zero
-    # get all scores of current_user
-    user_scores = Score.query.filter_by(user_id=user.id).all()
+    
     # get highest score from each module
     vacuum_top = Score.query.filter_by(user_id=user.id, questionset_id=2).order_by(Score.score.desc())[0]
     planet_top = Score.query.filter_by(user_id=user.id, questionset_id=3).order_by(Score.score.desc())[0]
     satellite_top = Score.query.filter_by(user_id=user.id, questionset_id=4).order_by(Score.score.desc())[0]
-    sun_top = Score.query.filter_by(user_id=user.id, questionset_id=5).order_by(Score.score.desc())[0]
+    sun_top = Score.query.filter_by(user_id=user.id, questionset_id=5).order_by(Score.score.desc())[0] 
+    # get all scores of current_user
+    user_scores = Score.query.filter_by(user_id=user.id).all()
     for score in user_scores:
         score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
