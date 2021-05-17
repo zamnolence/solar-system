@@ -1,0 +1,129 @@
+* 18c3828	22601257	Mon May 17 02:36:26 2021 -0700	Cleaned up code and updated README.
+* 1c8a683	22601257	Mon May 17 02:23:49 2021 -0700	Removed excess comments from database model.
+* a9c12a9	22601257	Mon May 17 02:22:32 2021 -0700	Changed orderring of posts to be lastest-first.
+* 1d1b907	22601257	Mon May 17 02:15:09 2021 -0700	Removed temporary req file (storing updated requirements.txt)
+*   670f683	22601257	Mon May 17 02:12:29 2021 -0700	Merge branch 'cleanDb' into main
+|\  
+| * 32aa39c	22601257	Mon May 17 02:09:42 2021 -0700	Added fresh mock users, comments and quiz attempts.
+* |   ac50cb8	22601257	Mon May 17 02:11:49 2021 -0700	Merge branch 'main' of https://github.com/zamnolence/solar-system into main
+|\ \  
+| |/  
+|/|   
+| * c9c631f	Doungporn Wiwatanapataphee	Mon May 17 16:40:27 2021 +0800	Minor bug fix on feedback
+* | f4f214a	22601257	Mon May 17 01:40:52 2021 -0700	Added page to posts.
+* |   35c307b	22601257	Mon May 17 01:33:54 2021 -0700	Merged bugfix in to main; updated requirements.txt.
+|\ \  
+| * | 1827209	22601257	Mon May 17 01:31:07 2021 -0700	Attempted (failed) to fix bug in testing (outlined further in the README under 'Testing.' Update requirements.txt and README.
+| * | 8bf55e1	22601257	Mon May 17 00:47:52 2021 -0700	Save state for bug fix.
+* | |   7cedd4e	22601257	Mon May 17 01:33:01 2021 -0700	Updating local main branch database to merge bugfix.
+|\ \ \  
+| |/ /  
+|/| /   
+| |/    
+| * f422796	Doungporn Wiwatanapataphee	Mon May 17 16:14:34 2021 +0800	Update requirements.txt
+| * 392e560	Doungporn Wiwatanapataphee	Mon May 17 16:04:50 2021 +0800	Update README.md
+| * 356115f	Doungporn	Mon May 17 15:35:47 2021 +0800	Update database diagram to include feedback
+| * b96d0d1	Doungporn	Mon May 17 15:23:52 2021 +0800	Add feedback to quiz
+* |   b351f92	22601257	Mon May 17 00:23:41 2021 -0700	Merging testing branch in to main.
+|\ \  
+| * | 4983bc3	22601257	Mon May 17 00:18:12 2021 -0700	Added further selenium testing and fixed various bugs.
+* | | 382fb64	22601257	Mon May 17 00:20:35 2021 -0700	Commit before merging testing
+| |/  
+|/|   
+* | 2d7d57f	Doungporn	Mon May 17 13:06:43 2021 +0800	Minor fix based on W3C CSS validator
+* | 2aaf2e8	22601257	Sun May 16 20:55:01 2021 -0700	Fixed bug with user profile not loading empty scores for newly registered users. Updated testing for user login.
+|\| 
+| * fcc6f84	22601257	Sun May 16 17:45:45 2021 -0700	Last commit perhasps unsuccessful; Added tests for Home Page, fixed issues with ids and names in certain html pages.
+| * f17bdb2	22601257	Sun May 16 17:43:18 2021 -0700	Added further tests to Home Page; updated certain id'
+| * fc961a4	22601257	Sat May 15 06:01:33 2021 -0700	Added Selenium tests; HomePage, User, Navigation, Module to varying degrees.
+| * b9fe2c4	22601257	Sat May 15 02:15:42 2021 -0700	Added basic scripts (and test suite) for selenium tests.
+| * d302463	22601257	Sat May 15 00:29:19 2021 -0700	Removed unused files; removed scoreboard view in routes.
+* | c8bc4ff	22601257	Sun May 16 17:48:56 2021 -0700	Database update.
+* | 90479fb	Doungporn Wiwatanapataphee	Sun May 16 23:28:34 2021 +0800	Update README.md
+* | 70bd070	Doungporn	Sun May 16 23:13:58 2021 +0800	Update database relationship diagram
+* | 513c621	Doungporn	Sun May 16 23:05:46 2021 +0800	Add database relationship diagram
+* | e086f95	Doungporn Wiwatanapataphee	Sun May 16 23:02:13 2021 +0800	Update README.md
+* | bb5f0b5	Doungporn Wiwatanapataphee	Sun May 16 23:01:19 2021 +0800	Update README.md
+* | 7d64dee	Doungporn	Sun May 16 22:19:34 2021 +0800	Add initialise scores for new user
+* | ed657e7	Doungporn	Sun May 16 17:50:25 2021 +0800	Add scoreboard to home page for authenticated users
+* | f54f768	Doungporn	Sun May 16 17:06:12 2021 +0800	slightly change result page
+* | f359a33	Doungporn	Sun May 16 16:48:31 2021 +0800	Implement CSS on user profile  add performance chart for user
+* | a85b2d3	Doungporn	Sun May 16 15:02:18 2021 +0800	Modify css for result page
+* | 9428075	Doungporn	Sun May 16 14:09:21 2021 +0800	Modify css for quiz page
+* | fd691ff	Doungporn	Sun May 16 13:11:28 2021 +0800	Add progress bar
+* | e07ad79	Doungporn	Sun May 16 12:49:30 2021 +0800	More CSS on quiz page
+* | b00b2e4	Doungporn	Sun May 16 01:36:45 2021 +0800	More CSS on the vacuum of space module
+* | cd60d68	Doungporn	Sun May 16 00:43:32 2021 +0800	More CSS on the satellites module
+* | bbf9cc2	Doungporn	Sun May 16 00:23:21 2021 +0800	More CSS on the Sun and the Planets modules
+* | 28c8b6d	Doungporn	Sat May 15 23:32:52 2021 +0800	More CSS on the planets module and add learning_module.js file
+* | be6ab58	Doungporn	Sat May 15 18:15:39 2021 +0800	Modify css for registration page
+* | 1d22629	Doungporn	Sat May 15 18:03:44 2021 +0800	Modify css for login page
+* | 9cc94c1	Doungporn	Sat May 15 16:46:17 2021 +0800	Change style of home page for anonymous users and authenticated users
+|/  
+* c757601	Doungporn	Sat May 15 14:44:32 2021 +0800	Bug fix: finish button is now working properly!
+* 40b275e	Doungporn	Sat May 15 13:49:58 2021 +0800	Slightly improve css, template and add README skeleton
+* 62ee1a6	Doungporn	Fri May 14 23:52:57 2021 +0800	Add css and modify home and contents page to include quiz at the end
+* 66bf0ce	22601257	Fri May 14 05:25:57 2021 -0700	Reformatted Learning Modules to fit the page better using bootstrap.
+* e1bd261	22601257	Fri May 14 05:18:04 2021 -0700	Tethered Learning Modules and their quizzes on the home page.
+* 21099d7	22601257	Fri May 14 04:30:27 2021 -0700	Fixed issue with finishing Quiz - caused by string to integer comparison in score validation.
+* 245647b	22601257	Fri May 14 04:00:20 2021 -0700	Slight changes; testing main branch
+* 34f71ef	22601257	Fri May 14 03:13:35 2021 -0700	Slight redesign of home page; Added /home and /index to 'home' paths.
+* bf1db42	22601257	Fri May 14 03:04:13 2021 -0700	Pagination added to posts on user profiles.
+* 13c67ee	22601257	Fri May 14 02:54:03 2021 -0700	fine-tuned ability to paginate posts (10 per page, added 'older' and 'newer' buttons). Working on same functionality on user profile.
+* a53be0b	22601257	Thu May 13 23:46:59 2021 -0700	Comment functionality mostly implemented in learning modules; newer/older post buttons are inconsistent.
+* 1630bf2	22601257	Thu May 13 22:48:36 2021 -0700	Added modules to home page.
+* 7bf939b	22601257	Thu May 13 22:23:57 2021 -0700	Currently implementing buttons to navigate to learning modules on Home page. Individual modules populated with information.
+* 57771cb	22601257	Thu May 13 20:53:02 2021 -0700	Reverted to old-state in order to fix database issues.
+* eb96888	22601257	Thu May 13 17:48:31 2021 -0700	Updated testing.
+* 8fafe52	22601257	Thu May 13 07:41:14 2021 -0700	Added functionality for posts to appear on their respective pages and deleted by the appropriate user (whilst returning to the same page, refreshed)
+* 65afb14	22601257	Thu May 13 03:06:54 2021 -0700	Further testing implemented for Question, QuestionSet, CurrentQuestion and Score.
+* 15891c4	22601257	Wed May 12 22:44:00 2021 -0700	Updated testing to account for Question, Option models.
+* 07f1c21	22601257	Wed May 12 22:07:33 2021 -0700	Added more_learning and scoreboard template pages; reworking tests.py for new database model.
+* d7dbd05	22601257	Wed May 12 20:57:37 2021 -0700	Fixed issue with displaying user scores on profiles when not logged in as that user.
+* 7f2c3f9	22601257	Wed May 12 20:06:37 2021 -0700	Completed merging of comments in to addQuiz.
+*   73a427c	22601257	Wed May 12 19:47:45 2021 -0700	Merged comments branch in to addQuiz.
+|\  
+| * 2381537	22601257	Wed May 12 04:25:19 2021 -0700	Various efforts at implementing comment deletion - incomplete.
+| * 1764afc	22601257	Tue May 11 23:58:34 2021 -0700	Reformatted whitespace.
+| * 1a66243	22601257	Tue May 11 23:16:55 2021 -0700	Updated models with functions for reset password tokens.
+| * f407d9a	22601257	Tue May 11 21:42:35 2021 -0700	Added commenting (post) functionality; Ability to post present on index page whilst awaiting learning modules.
+| * db3bb1a	22601257	Tue May 11 05:19:55 2021 -0700	Fixed issue of current_username being undefined; tidied some code.
+* | 360cd49	Doungporn	Thu May 13 02:28:08 2021 +0800	Add timer.js for countdown timer in quiz page
+* | 28c0706	Doungporn	Thu May 13 02:26:49 2021 +0800	Add result page and user results in profile, implement db, and add some comments
+* | 22e958c	Doungporn	Wed May 12 16:49:56 2021 +0800	Add quiz and database
+|/  
+* 34c501e	22601257	Mon May 10 23:49:08 2021 -0700	Updated Attempt and Answer tests.
+* 17a55eb	22601257	Mon May 10 22:57:25 2021 -0700	Updated test verbosity.
+* 6e48c73	22601257	Mon May 10 22:55:19 2021 -0700	Added further tests to Attempt and Answer model; refined previous tests. Replaced validation on Attempt to callable function that adds answers to the db.
+*   45f85a2	22601257	Mon May 10 07:03:39 2021 -0700	Merge branch 'flask' of https://github.com/zamnolence/solar-system into flask "Updating flask branch from remote repo."
+|\  
+| *   94226d8	Doungporn	Mon May 10 22:00:32 2021 +0800	Resolve merge conflicts
+| |\  
+| * | 7ae7056	Doungporn	Mon May 10 21:56:41 2021 +0800	Add password reset support
+| * | fed9b0a	Doungporn	Mon May 10 20:46:48 2021 +0800	Add error handler
+* | | b216eed	22601257	Mon May 10 07:03:15 2021 -0700	Added tests.py for testing.
+| |/  
+|/|   
+* | afd661f	22601257	Mon May 10 06:15:30 2021 -0700	Added vote_spread function to Post (returns 'upvotes - downvotes' for a 'total' score).
+* | ba7e3ba	22601257	Mon May 10 06:06:37 2021 -0700	Updated database model to hold Quiz Attempts and Answers; updated Post to hold upvotes, downvotes and page.
+* | c374fff	22601257	Mon May 10 02:31:30 2021 -0700	Updated DB Models to account for Quiz attempts and their answers.
+|/  
+* fcfd9df	Doungporn	Sat May 8 21:35:22 2021 +0800	Add edit user profile
+* 0545e63	Doungporn	Sat May 8 21:27:16 2021 +0800	Add last_seen and about_me to user profile
+* 5498b26	Doungporn	Sat May 8 21:21:15 2021 +0800	Implement user profile page
+* ba33b83	Doungporn	Sat May 8 21:20:29 2021 +0800	Add sub-template for post
+* 458f212	Doungporn	Sat May 8 21:17:09 2021 +0800	Chapter 4 Add user avartar
+* 9815785	Doungporn	Sat May 8 21:12:11 2021 +0800	Chapter 6 Add user profile page
+* 250cf83	Doungporn	Sat May 8 21:11:50 2021 +0800	Chapter 6 Add user profile page
+*   b6d8405	Doungporn	Thu May 6 09:40:30 2021 +0800	Merge branch 'addUserLogins' into flask
+|\  
+| * 37372d9	Doungporn	Thu May 6 09:39:17 2021 +0800	CH5 Add registration page
+| * 65ff597	Doungporn	Thu May 6 09:38:28 2021 +0800	CH4-5 Add database and login page
+|/  
+* aa03e47	22601257	Wed May 5 05:40:46 2021 -0700	Removed temporary requirements file (req2.txt).
+* 5a10e97	22601257	Wed May 5 02:02:38 2021 -0700	Simplified requirements.txt and remade virtual environment. Flash Mega-Tutorial actually completed UP TO part 4 (last commit message was incorrect).
+* 1282190	Jason	Tue May 4 01:47:41 2021 -0700	Further implementing Flask; Completed chapter 4 of Mega-Tutorial.
+* f9c868b	Jason	Tue May 4 00:05:15 2021 -0700	Further Flask implementation.
+* df3ee0e	Jason	Mon May 3 01:27:05 2021 -0700	Initial Flask setup; added requirements.txt for virtual environment.
+* 33beae6	Jason	Sun May 2 22:02:29 2021 -0700	Testing initial GIT clone to local system.
+* b45f9ca	Doungporn Wiwatanapataphee	Mon Apr 26 13:51:57 2021 +0800	Initial commit
