@@ -3,9 +3,9 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 from app import app, db
-from app.models import CurrentQuestion, Option, Question, QuestionSet, User, Post, Score #Attempt, Answer
+from app.models import *
 
-class tests(unittest.TestCase):
+class DatabaseTest(unittest.TestCase):
   def setUp(self):
     basedir = os.path.abspath(os.path.dirname(__file__))
     app.config['SQLALCHEMY_DATABASE_URI']=\

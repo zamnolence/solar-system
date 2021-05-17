@@ -582,7 +582,6 @@ iframe {
 }
 
 .horizontal-bar-chart p { 
-    position: relative;
     display: block;  
     _zoom: 1;
     margin: 0 0 .9em 0;
@@ -656,8 +655,8 @@ footer {
     font-size: 11px;
     background: black;
     color:grey;
-    padding: 3rem 1rem;
     bottom: 0;
     left: 0;
+    height: 50px;
     width: 100%;
 }

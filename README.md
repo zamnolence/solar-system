@@ -72,8 +72,35 @@ flask run
 
 ## Testing
 
+1. Navigate to the tests folder and activate the virtual environment
 ```
-python3 test.py
+cd /tests
+source venv/bin/activate
 ```
+2. In the terminal, start the server:
+```
+flask run
+```
+3. Open a separate terminal and load the same virtual environment.
+- To run a specific group of tests, type:
+```
+python <testName.py>
+```
+For example:
+```
+python databaseTest.py
+```
+- To run the entire suite of tests, type:
+```
+python testSuite.py
+```
+
+Please note that two tests are half implemented, in the "quizTest.py" file.
+Before this most recent commit, the first test "test_quiz_navigation" was
+working fine, is now registerring the button required as obscured.
+The test "test_quiz_selection" was never fully implemented, as it presented 
+issues of a similar, but unrelated nature.
+Due to time constraints, we have opted to leave it out of the testSuite, which 
+otherwise works as expected.
 
 ## References
