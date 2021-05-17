@@ -28,10 +28,17 @@ class QuizTest(unittest.TestCase):
       "learning_module/sun",
       ]
 
+  # The below test was working before our most recent (final) update.
+  # At this prior to this, the test would iterate through all of the 
+  # modules and their quizzes, ensuring that every question was reachable 
+  # and ended on the 'Results' page.
+
   # Tests general navigation through the quiz; ending at the result page.
   def test_quiz_navigation(self):
     for m in self.modules:
       self.driver.get("http://127.0.0.1:5000/{}".format(m))
+      element = self.driver.find_element_by_class_name("start-quiz").click()
+      self.driver.execute_script("arguments[0].scrollIntoView()", element)
       self.driver.find_element_by_class_name("start-quiz").click()
       # For each question navigation button (above the question):
       buttons = self.driver.find_elements_by_class_name("qBtn")
