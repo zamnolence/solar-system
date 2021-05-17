@@ -154,8 +154,8 @@ class Score(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     questionset_id = db.Column(db.Integer, db.ForeignKey('questionset.id'))
-    score = db.Column(db.Integer)
-    time_taken = db.Column(db.Time)
+    score = db.Column(db.Integer, default=0)
+    time_taken = db.Column(db.Time, default=0)
 
     @validates('score')
     def validate_score(self, key, score):

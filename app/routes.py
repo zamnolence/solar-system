@@ -34,12 +34,6 @@ def home():
 def more_learning():
     return render_template('more_learning.html')
 
-# Scoreboard view
-@app.route('/scoreboard')
-@login_required
-def scoreboard():
-    return render_template('scoreboard.html')
-
 # Delete Post
 @app.route('/delete_post', methods = ['GET','POST'])
 @login_required
@@ -102,12 +96,13 @@ def user_profile(username):
     planet_top = Score.query.filter_by(user_id=user.id, questionset_id=3).order_by(Score.score.desc())[0]
     satellite_top = Score.query.filter_by(user_id=user.id, questionset_id=4).order_by(Score.score.desc())[0]
     sun_top = Score.query.filter_by(user_id=user.id, questionset_id=5).order_by(Score.score.desc())[0] 
+    
     # get all scores of current_user
     user_scores = Score.query.filter_by(user_id=user.id).all()
     for score in user_scores:
         score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
-        scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
+    scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
     return render_template('user_profile.html', user=user, score=total, posts=posts.items, 
     scoreSorted = scoreSorted, next_url=next_url, prev_url=prev_url, vacuum_top=vacuum_top, planet_top=planet_top,
     satellite_top=satellite_top, sun_top=sun_top)

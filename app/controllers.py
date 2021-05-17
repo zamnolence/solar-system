@@ -36,35 +36,32 @@ class UserController():
             user = User(username=form.username.data, user_type='regular',
                         email=form.email.data)
             user.set_password(form.password.data)
-            db.session.add(user)
+            db.session.add(user)            
             db.session.commit()
-            login_user(user, remember=False)    # login immediately
-
+            user = User.query.filter_by(username=form.username.data).first_or_404()
             # initialise score of 0 for user
             vacuum_score = Score(user_id = user.id,
                                  questionset_id = 2,
                                  score = 0,
                                  time_taken = time(minute=0, second=0))
             db.session.add(vacuum_score)
-            db.session.commit()
             planet_score = Score(user_id = user.id,
                                  questionset_id = 3,
                                  score = 0,
                                  time_taken = time(minute=0, second=0))
             db.session.add(planet_score)
-            db.session.commit()
             satellite_score = Score(user_id = user.id,
                                     questionset_id = 4,
                                     score = 0,
                                     time_taken = time(minute=0, second=0))
             db.session.add(satellite_score)
-            db.session.commit()
             sun_score = Score(user_id = user.id,
                               questionset_id = 5,
                               score = 0,
                               time_taken = time(minute=0, second=0))
             db.session.add(sun_score)
             db.session.commit()
+            login_user(user, remember=False)    # login immediately
             return redirect(url_for('home'))    # redirect to home
         return render_template('register.html', title='Register', form=form)
 

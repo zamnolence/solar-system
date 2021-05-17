@@ -9,23 +9,20 @@
 <div class="container login-container">
   <h2 style="text-align:center;"><b>Sign In</b></h2>
   <br>
-  <form action="" method="post" novalidate>
+  <form action="" method="post" novalidate id="login_form">
     {{ form.hidden_tag() }}
-
     <p>
-      {{ form.username(size=39, placeholder="Username") }}<br>
+      {{ form.username(size=39, id='username', placeholder="Username") }}<br>
       {% for error in form.username.errors %}
       <span style="color: darkred;">[{{ error }}]</span>
       {% endfor %}
     </p>
-
     <p>
-      {{ form.password(size=39, placeholder="Password") }}<br>
+      {{ form.password(size=39, id='password', placeholder="Password") }}<br>
       {% for error in form.password.errors %}
       <span style="color: darkred;">[{{ error }}]</span>
       {% endfor %}
     </p>
-
     <p>{{ form.submit(id='submit-field', class_="signin-button") }}</p>
   </form>
   <p style="text-align:center;"><a href="{{ url_for('register') }}">New User? Click here to register!</a></p>

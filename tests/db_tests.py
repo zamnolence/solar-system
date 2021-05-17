@@ -1,4 +1,7 @@
-import unittest, os
+import unittest, os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
 from app import app, db
 from app.models import CurrentQuestion, Option, Question, QuestionSet, User, Post, Score #Attempt, Answer
 
@@ -39,7 +42,6 @@ class tests(unittest.TestCase):
     self.assertEqual(u.id, 99999999, "ID incorrect.")
     self.assertEqual(u.username, 'JohnSmith', "Username incorrect.")
     self.assertEqual(u.email, 'John.Smith@email.com', "Email incorrect.")
-   # self.assertEqual(u.email, 'john.smith@email.com', "Email is case sensitive (incorrect).")
 
   def test_user_about_me(self):
     u = User.query.first()
@@ -75,27 +77,6 @@ class tests(unittest.TestCase):
     self.assertEqual(len(p.body), len(_str), "Post length incorrect.")
     self.assertEqual(p.body, _str, "Post body does not equal the string given.")
 
-  # def test_post_voting(self):
-  #   u = User.query.first()
-  #   _str = "This is a test post with 39 characters."
-  #   p = Post(user_id=u.id, body=_str, page="test_page")
-  #   db.session.add(p)
-  #   db.session.commit()
-
-  #   self.assertEqual(p.upvotes, 0, "Initial upvote count noy 0.")
-  #   self.assertEqual(p.downvotes, 0, "Initial downvote count not 0.")
-  #   self.assertEqual(p.vote_spread(), 0, "Initial vote spread not 0.")
-
-  #   for i in range(17):
-  #     p.upvote()
-
-  #   for i in range(5):
-  #     p.downvote()
-
-  #   self.assertEqual(p.upvotes, 17, "Upvote count incorrect.")
-  #   self.assertEqual(p.downvotes, 5, "Downvote count incorrect.")
-  #   self.assertEqual(p.vote_spread(), 12, "Vote spread incorrect.")
-
   def test_delete_post(self):
     u = User.query.first()
     _str = "This is a test post with 39 characters."
@@ -108,9 +89,6 @@ class tests(unittest.TestCase):
     db.session.commit()
     self.assertEqual(u.posts.count(), 0, "Users post count not 0.")
     self.assertEqual(Post.query.count(), 0, "Post count not 0.")
-
-#  def test_post_body_validation(self):
-    # Validation must be implemented first.
 
 # Question specific tests (Question, QuestionSet, Option, CurrentQuestion)
   def test_question_answer_present_in_options(self):
@@ -146,62 +124,6 @@ class tests(unittest.TestCase):
     currQuestion.question_number = 1
     currQuestion.question_number = len(questions)
     
-    
-    
-
-# # Quiz Attempt specific tests
-#   def test_answer_count_in_range(self):
-#     att = Attempt.query.first()
-#     self.assertFalse(att.answers.count(), "Answer count is not 0.")
-
-#     # Add 5 answers
-#     for i in range(1, 6):
-#       a = Answer(attempt_id=att.id, question=i)
-#       att.add_answer(a)
-#     self.assertEqual(att.answers.count(), 5, "Answer count is not 5.")
-
-#     # Add 5 more answers
-#     for i in range(6, 11):
-#       a = Answer(attempt_id=att.id, question=i)      
-#       att.add_answer(a)
-#     self.assertEqual(att.answers.count(), 10, "Answer count is not 10.")
-
-#     # Add an 11th answer
-#     # No more than 10 unique answers can be present due to answer validation, 
-#     # so this is part of the test is functionally useless at this time.
-#     a = Answer(attempt_id=att.id)      
-#     att.add_answer(a)
-#     self.assertEqual(att.answers.count(), 10, "11th answer was accepted (Out of Bounds).")
-
-#   def test_duplicate_answer(self):
-#     att = Attempt.query.first()
-#     self.assertFalse(att.answers.count(), "Answer count is not 0.")
-
-#     a1 = Answer(attempt_id=att.id, question=5)
-#     a2 = Answer(attempt_id=att.id, question=5)
-#     att.add_answer(a1)
-#     att.add_answer(a2)
-#     self.assertEqual(att.answers.count(), 1, "Duplicate answer was accepted.")
-
-# # Answer specific tests
-#   def test_question_number_valid(self):
-#     with self.assertRaises(AssertionError):
-#       a1 = Answer(question=-1)
-#       a2 = Answer(question=11)
-
-#   def test_answer_correct_valid(self):
-#     with self.assertRaises(AssertionError):
-#       a1 = Answer(correct=-1)
-#       a2 = Answer(correct=2)
-    
-#     att = Attempt.query.first()
-#     self.assertFalse(att.answers.count(), "Answer count is not 0.")
-#     a1 = Answer(attempt_id=att.id, question=1, correct=0)
-#     a2 = Answer(attempt_id=att.id, question=2, correct=1)
-#     att.add_answer(a1) 
-#     att.add_answer(a2)
-#     self.assertEqual(att.answers.count(), 2, "Answer count is not 2.")
-
   def tearDown(self):
     db.session.remove()
     db.drop_all()

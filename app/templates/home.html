@@ -3,27 +3,23 @@
 {% block head %}
 <title>Home | Solar System Quiz</title>
 
- <script>
-
-</script>
-
 {% endblock %} 
 
 {% block body %}
 
 <!-- Carousel -->
-<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+<div id="home_carousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#homeCarousel" data-slide-to="1"></li>
-    <li data-target="#homeCarousel" data-slide-to="2"></li>
-    <li data-target="#homeCarousel" data-slide-to="3"></li>
-    <li data-target="#homeCarousel" data-slide-to="4"></li>
+    <li data-target="#home_carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#home_carousel" data-slide-to="1"></li>
+    <li data-target="#home_carousel" data-slide-to="2"></li>
+    <li data-target="#home_carousel" data-slide-to="3"></li>
+    <li data-target="#home_carousel" data-slide-to="4"></li>
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
+  <div id="slides" class="carousel-inner" role="listbox">
     <div class="item active">
       <img
         src="{{ url_for('static', filename='img/solarsystem.jpg') }}"
@@ -39,7 +35,7 @@
       </div>
     </div>
 
-    <div class="item">
+    <div name="slide" class="item">
       <img
         src="{{ url_for('static', filename='img/vacuum.jpg') }}"
         alt="Vacuum of Space"
@@ -50,7 +46,7 @@
       </div>
     </div>
 
-    <div class="item">
+    <div name="slide" class="item">
       <img
         src="{{ url_for('static', filename='img/theplanets.jpg') }}"
         alt="The Planets"
@@ -61,7 +57,7 @@
       </div>
     </div>
 
-    <div class="item">
+    <div name="slide" class="item">
       <img
         src="{{ url_for('static', filename='img/satellites.jpg') }}"
         alt="Satellites"
@@ -72,7 +68,7 @@
       </div>
     </div>
 
-    <div class="item">
+    <div name="slide" class="item">
       <img
         src="{{ url_for('static', filename='img/thesun.jpg') }}"
         alt="The Sun"
@@ -90,7 +86,7 @@
   <!-- Left and right controls for carousel -->
   <a
     class="left carousel-control"
-    href="#homeCarousel"
+    href="#home_carousel"
     role="button"
     data-slide="prev"
   >
@@ -99,7 +95,7 @@
   </a>
   <a
     class="right carousel-control"
-    href="#homeCarousel"
+    href="#home_carousel"
     role="button"
     data-slide="next"
   >
@@ -109,7 +105,7 @@
 </div>
 
 <!-- Welcome messages and about -->
-<div class="container">
+<div class="container" id='main_content'>
   <!-- Home page  -->
     <h3><i class="fa fa-lightbulb-o fa-fw"></i>&nbsp; Our purpose</h3>
     <br>
@@ -120,21 +116,21 @@
 
     <h3><i class="fa fa-space-shuttle fa-fw"></i>&nbsp; Getting Started</h3>
     <br>
-  <!-- Authenticated users -->
-  {% if current_user.is_authenticated %}
+    <!-- Authenticated users -->
+    {% if current_user.is_authenticated %}
     <!-- Content section -->
     <p>Choose one of the following topics to start the journey!</p>
     <br><br>
     <!-- Select a learning module -->
     {% for qset in questionSet %}
-      <div class='container-fluid col-xs-3'>
+      <div class='container-fluid col-xs-3' name='module'>
         <button class="module-button" id="{{ qset.name }}" onclick="window.location.href='{{ url_for('learning_module', module=qset.module) }}'">
           <b>{{ qset.name }}</b>
         </button>
       </div>
     {% endfor %}
     
-    <hr class="divider" />
+    <hr class="divider">
 
     <!-- Aggregate Scoreboard -->
     <h3><i class="fa fa-th-large fa-fw"></i>&nbsp; Scoreboard</h3>
