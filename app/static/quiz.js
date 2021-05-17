@@ -28,7 +28,7 @@ function validate_answer(qNum) {
 
     /* Handle incorrect answer*/
     } else {
-        handle_incorrect(qNum, false)
+        handle_incorrect(qNum, feedback)
     }
     /* Deselect button */
     document.getElementById('mcq'+qNum).querySelector('button').style.display = 'none';
