@@ -29,7 +29,7 @@ class HomePageTest(unittest.TestCase):
   def test_expected_elements_present(self):
     carousel = self.driver.find_element_by_id("home_carousel")
     assert carousel != None
-    slides = carousel.find_element_by_id("slides_container")    
+    slides = carousel.find_element_by_id("slides")    
     assert slides != None
     leftButton = carousel.find_element_by_class_name("left")
     rightButton = carousel.find_element_by_class_name("right")
@@ -39,7 +39,7 @@ class HomePageTest(unittest.TestCase):
     assert len(slide) == 4
     mainContent = self.driver.find_element_by_id("main_content")
     assert mainContent != None
-    
+
   @classmethod
   def tearDown(self):
     # close the browser window
