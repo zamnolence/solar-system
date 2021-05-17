@@ -97,10 +97,11 @@ class QuizController():
                 answerOptions = Option.query.filter_by(question_id = questionList[i].parent.id).all()
                 answerOptions.append(questionList[i].parent.answer)
                 random.shuffle(answerOptions)           # shuffle options
-                quiz_dict.append({'question':questionList[i].parent.question,
-                                'qType':'multiple',
+                quiz_dict.append({'question': questionList[i].parent.question,
+                                'qType': 'multiple',
                                 'answerOptions': answerOptions,
-                                'answer':questionList[i].parent.answer})
+                                'answer': questionList[i].parent.answer,
+                                'feedback': questionList[i].parent.reference_value})
                 totalTime += 20                         # 20 sec / question
         return render_template('quiz.html', questions = quiz_dict, timer = totalTime, questionsetID = questionsetID)
 

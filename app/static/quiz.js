@@ -19,11 +19,12 @@ function validate_answer(qNum) {
     let selectQ =  `input[name=Q${qNum}]:checked`
     /* get the corresponding correct answer and user answer from document */
     let correct_ans = document.getElementById('answer'+qNum).innerHTML;
+    let feedback = document.getElementById('feedback'+qNum).innerHTML;
     let user_ans = (document.querySelector(selectQ) || {}).value
 
     /* Handle correct answer */
     if (user_ans == correct_ans) {
-        handle_correct(qNum, true)
+        handle_correct(qNum)
 
     /* Handle incorrect answer*/
     } else {
@@ -47,14 +48,15 @@ function handle_correct(qNum) {
     update_scores(qNum, true);
 
 }
-function handle_incorrect(qNum, answer) {
+function handle_incorrect(qNum, feedback) {
     /* Prompt user with coloured message and change button color to limegreen */
     $('#Q'+qNum+'Button').removeClass('clicked');
     let message = document.getElementById('msg'+qNum);
     let qBtn = document.getElementById('Q'+qNum+'Button');
-    message.innerHTML = `Incorrect!`;
-    message.style.color = 'orange'
+    message.innerHTML = `Incorrect! ${feedback}`;
+    message.style.color = 'orange';
     qBtn.style.backgroundColor = 'orange';
+    // message.innerHTML = `Incorrect!`;
     // message.innerHTML = `Correct answer is ${answer}.`;
 
     /* Update score for user*/
