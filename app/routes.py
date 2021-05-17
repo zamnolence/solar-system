@@ -86,7 +86,7 @@ def user_profile(username):
     for score in user_scores:
         score_dict.append({'module': score.questionset_id}) # append scores for each learning module
         total += score.score    # add total score
-        scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
+    scoreSorted = Score.query.filter_by(user_id=user.id).order_by(Score.score.desc()).all()
     return render_template('user_profile.html', user=user, score=total, posts=posts.items, 
     scoreSorted = scoreSorted, next_url=next_url, prev_url=prev_url)
 
