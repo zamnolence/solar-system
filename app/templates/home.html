@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div name="slide" class="item">
+    <div class="slide item">
       <img
         src="{{ url_for('static', filename='img/vacuum.jpg') }}"
         alt="Vacuum of Space"
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div name="slide" class="item">
+    <div class="slide item">
       <img
         src="{{ url_for('static', filename='img/theplanets.jpg') }}"
         alt="The Planets"
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div name="slide" class="item">
+    <div class="slide item">
       <img
         src="{{ url_for('static', filename='img/satellites.jpg') }}"
         alt="Satellites"
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div name="slide" class="item">
+    <div class="slide item">
       <img
         src="{{ url_for('static', filename='img/thesun.jpg') }}"
         alt="The Sun"
@@ -120,7 +120,7 @@
     <p>Choose one of the following topics to start the journey!</p>
     <!-- Select a learning module -->
     {% for qset in questionSet %}
-    <div class='container-fluid col-xs-3' name='modules'>
+    <div class='container-fluid col-xs-3 modules'>
       <button class="module-button" id="{{ qset.name }}" onclick="window.location.href='{{ url_for('learning_module', module=qset.module) }}'">
         {{ qset.name }}
       </button>

@@ -29,7 +29,7 @@
     <div id="Q{{ q_num+1 }}" class="main">
 
         <!-- Question number and its content -->
-        <h1>Question {{ q_num+1 }}</h1>
+        <h1 id="heading{{ q_num+1 }}">Question {{ q_num+1 }}</h1>
         <p> {{questions[q_num].question}} </p>
 
         <!-- Generate MCQ options -->
@@ -44,7 +44,7 @@
         {% endfor %}
         <br>
             <!-- Check button for validating each question -->
-            <button class="submitQ" type="button" onclick="validate_answer('{{ q_num+1 }}')">
+            <button id="check" class="submitQ" type="button" onclick="validate_answer('{{ q_num+1 }}')">
                 Check
             </button>
         </div>
@@ -70,7 +70,7 @@
                 Previous
             </button>
             <!-- Onclick submit results and redirect to result page -->
-            <button onclick="submitResults()" class="submitQ" type="button">
+            <button id="submit_quiz" onclick="submitResults()" class="submitQ" type="button">
                 Finish
             </button>
         </div>
