@@ -81,7 +81,7 @@ def before_request():
 def user_profile(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
-    posts = user.posts.paginate(
+    posts = user.posts.order_by(Post.timestamp.desc()).paginate(
       page, 5, False)
     next_url = url_for('user_profile', username=username, page=posts.next_num) \
       if posts.has_next else None
@@ -160,7 +160,7 @@ def reset_password(token):
 @login_required
 def learning_module(module):
   page = request.args.get('page', 1, type=int)
-  posts = Post.query.filter_by(page=module).paginate(
+  posts = Post.query.filter_by(page=module).order_by(Post.timestamp.desc()).paginate(
     page, app.config['POSTS_PER_PAGE'], False)
   next_url = url_for('learning_module', module=module, page=posts.next_num) \
     if posts.has_next else None
@@ -177,7 +177,7 @@ def learning_module(module):
       if posts.has_next else None
     prev_url = url_for('learning_module', module=module, page=posts.prev_num) \
       if posts.has_prev else None
-    posts = Post.query.filter_by(page=module).paginate(
+    posts = Post.query.filter_by(page=module).order_by(Post.timestamp.desc()).paginate(
       page, app.config['POSTS_PER_PAGE'], False)
     form.post.data=""
 
