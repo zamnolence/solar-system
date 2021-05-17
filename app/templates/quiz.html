@@ -12,119 +12,113 @@
 
 {% block body %}
 <div class="quiz-container">
-    <div class="container">
-        <!-- Timer -->
-        <!--<div id="timer"></div> -->
-
-        <!-- Buttons for selecting questions -->
-        <br>
-        {% for q_num in range(1, (questions | length) + 1) %}
-            <button class="qBtn unclicked" id="Q{{ q_num }}Button">Q{{ q_num }}</button>
-        {% endfor %}
-    </div>
-
-    <div class="container">
-
-    <!-- Generates questions -->
-    {% for q_num in range(questions | length) %}
-    <div id="Q{{ q_num+1 }}" class="main">
-
-        <!-- Question number and its content -->
-        <h1 id="heading{{ q_num+1 }}">Question {{ q_num+1 }}</h1>
-        <p> {{questions[q_num].question}} </p>
-
-        <!-- Generate MCQ options -->
-        <div id="mcq{{ q_num+1 }}">
-        {% for option in questions[q_num].answerOptions %}
-            <label>
-                <input type="radio" name="Q{{ q_num+1 }}" value="{{ option }}">
-                <span></span>
-                {{option}}
-            </label>
-            <br>
-        {% endfor %}
-        <br>
-            <!-- Check button for validating each question -->
-            <button id="check" class="submitQ" type="button" onclick="validate_answer('{{ q_num+1 }}')">
-                Check
-            </button>
-        </div>
-        
-        <!-- Keep track of where we are -->
-        <p style="visibility:hidden;" id="totalTime">{{ timer }}</p>
-        <p style="visibility:hidden;" id="answer{{ q_num+1 }}">{{ questions[q_num].answer }}</p>
-        <p style="visibility:hidden;" id="feedback{{ q_num+1 }}">{{ questions[q_num].feedback }}</p>
-        <!-- Flash user a message -->
-        <p id="msg{{ q_num+1 }}"></p>
-
-        <!-- For first question have Next option only -->
-        {% if q_num == 0 %}
-        <div style="justify-content: flex-end;" class="nextPrevious_container endOfDiv">
-            <button class="submitQ" type="button" onclick="nextBtn('{{ q_num+1 }}')">
-                Next
-            </button>
-        </div>
-
-        <!-- For last question have Previous and Finish (submit_results) options-->
-        {% elif q_num == questions | length - 1 %}
-        <div class="nextPrevious_container endOfDiv">
-            <button class="submitQ" type="button" onclick="prevBtn('{{ q_num+1 }}')">
-                Previous
-            </button>
-            <!-- Onclick submit results and redirect to result page -->
-            <button id="submit_quiz" onclick="submitResults()" class="submitQ" type="button">
-                Finish
-            </button>
-        </div>
-
-        <!-- For other questions have Previous and Next options for navigate -->
-        {% else %}
-        <div class="nextPrevious_container endOfDiv">
-            <button class="submitQ" type="button" onclick="prevBtn('{{ q_num+1 }}')">
-                Previous
-            </button>
-            <button class="submitQ" type="button" onclick="nextBtn('{{ q_num+1 }}')">
-                Next
-            </button>
-        </div>
-        {% endif %}
-
-    </div>
+  <div class="container">
+    <!-- Timer -->
+    <!--<div id="timer"></div> -->
+    <!-- Buttons for selecting questions -->
+    <br>
+    {% for q_num in range(1, (questions | length) + 1) %}
+      <button class="qBtn unclicked" id="Q{{ q_num }}Button">Q{{ q_num }}</button>
     {% endfor %}
-    <p>{{count}}</p>    
+  </div>
+  <div class="container">
+  <!-- Generates questions -->
+  {% for q_num in range(questions | length) %}
+  <div id="Q{{ q_num+1 }}" class="main">
+    <!-- Question number and its content -->
+    <h1 id="heading{{ q_num+1 }}">Question {{ q_num+1 }}</h1>
+    <p> {{questions[q_num].question}} </p>
+
+    <!-- Generate MCQ options -->
+    <div id="mcq{{ q_num+1 }}">
+    {% for option in questions[q_num].answerOptions %}
+      <label>
+        <input type="radio" name="Q{{ q_num+1 }}" value="{{ option }}">
+        <span></span>
+        {{option}}
+      </label>
+      <br>
+    {% endfor %}
+    <br>
+      <!-- Check button for validating each question -->
+      <button id="check" class="submitQ" type="button" onclick="validate_answer('{{ q_num+1 }}')">
+        Check
+      </button>
+    </div>
+    
+    <!-- Keep track of where we are -->
+    <p style="visibility:hidden;" id="totalTime">{{ timer }}</p>
+    <p style="visibility:hidden;" id="answer{{ q_num+1 }}">{{ questions[q_num].answer }}</p>
+    <p style="visibility:hidden;" id="feedback{{ q_num+1 }}">{{ questions[q_num].feedback }}</p>
+    <!-- Flash user a message -->
+    <p id="msg{{ q_num+1 }}"></p>
+
+    <!-- For first question have Next option only -->
+    {% if q_num == 0 %}
+    <div style="justify-content: flex-end;" class="nextPrevious_container endOfDiv">
+      <button class="submitQ" type="button" onclick="nextBtn('{{ q_num+1 }}')">
+        Next
+      </button>
+    </div>
+
+    <!-- For last question have Previous and Finish (submit_results) options-->
+    {% elif q_num == questions | length - 1 %}
+    <div class="nextPrevious_container endOfDiv">
+      <button class="submitQ" type="button" onclick="prevBtn('{{ q_num+1 }}')">
+        Previous
+      </button>
+      <!-- Onclick submit results and redirect to result page -->
+      <button id="submit_quiz" onclick="submitResults()" class="submitQ" type="button">
+        Finish
+      </button>
+    </div>
+    <!-- For other questions have Previous and Next options for navigate -->
+    {% else %}
+    <div class="nextPrevious_container endOfDiv">
+      <button class="submitQ" type="button" onclick="prevBtn('{{ q_num+1 }}')">
+        Previous
+      </button>
+      <button class="submitQ" type="button" onclick="nextBtn('{{ q_num+1 }}')">
+        Next
+      </button>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endfor %}
+  <p>{{count}}</p>    
 </div>
 
 <script>
-    /* Show scores */
-    document.getElementById('points').style.display = 'inline-block';
+  /* Show scores */
+  document.getElementById('points').style.display = 'inline-block';
 
-    /* variable for user and question st */
-    var userID = '{{ current_user.id }}'
-    var questionsetID = '{{ questionsetID }}'
+  /* variable for user and question st */
+  var userID = '{{ current_user.id }}'
+  var questionsetID = '{{ questionsetID }}'
 
-    /* 
-    *  This function hide unselected questions from view  
-    *  and allow user to click on the button to select question
-    */
-    $(document).ready(function () {
-        $('button.qBtn').click(function () {
-            /* change class for previously selected question button (qBtn) */
-            $('button.qBtn').removeClass('clicked');
-            $('button.qBtn').addClass('unclicked');
-            /* change class for currently selected question button (this) */
-            $(this).removeClass('unclicked')
-            $(this).addClass("clicked");
-            let showDiv = (this.id).replace('Button', '');
-            /* hide questions for div with class='main'*/
-            $('div.main').hide();
-            /* show selected question*/
-            $('#' + showDiv).show();
-
-        });
+  /* 
+  *  This function hide unselected questions from view  
+  *  and allow user to click on the button to select question
+  */
+  $(document).ready(function () {
+    $('button.qBtn').click(function () {
+      /* change class for previously selected question button (qBtn) */
+      $('button.qBtn').removeClass('clicked');
+      $('button.qBtn').addClass('unclicked');
+      /* change class for currently selected question button (this) */
+      $(this).removeClass('unclicked')
+      $(this).addClass("clicked");
+      let showDiv = (this.id).replace('Button', '');
+      /* hide questions for div with class='main'*/
+      $('div.main').hide();
+      /* show selected question*/
+      $('#' + showDiv).show();
     });
-    $(function () {
-        /* click (select) first question upon entry */
-        $('#Q1Button').click();
-    });
+  });
+  $(function () {
+      /* click (select) first question upon entry */
+      $('#Q1Button').click();
+  });
 </script>
 {% endblock %}

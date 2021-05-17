@@ -69,6 +69,16 @@ pip install -r requirements.txt
 flask run
 ```
 
+Note: A database is present with pre-generated user profiles, posts and scores. To 
+start a fresh database, delete "app.db" and the "/migrations" folder, then in a terminal
+running the appropriate virtual environment, type:
+
+```
+flask db init
+flask db migrate
+flask db upgrade
+```
+
 
 ## Testing
 

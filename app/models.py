@@ -7,7 +7,6 @@ from flask_login        import UserMixin
 from hashlib            import md5
 from sqlalchemy.orm     import validates
 
-
 # User table
 class User(UserMixin, db.Model):
     __tablename__ = 'user_table'

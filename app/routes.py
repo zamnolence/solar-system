@@ -28,12 +28,7 @@ def home():
     sun_score = Score.query.filter_by(questionset_id=5).order_by(Score.score.desc()).all()
     return render_template('home.html', questionSet=questionSet, vacuum_score=vacuum_score, 
     planet_score=planet_score, satellite_score=satellite_score, sun_score=sun_score)
-
-# More Learning view
-@app.route('/more_learning')
-def more_learning():
-    return render_template('more_learning.html')
-
+    
 # Delete Post
 @app.route('/delete_post', methods = ['GET','POST'])
 @login_required
@@ -205,6 +200,3 @@ def result():
 @app.route('/submit-results', methods=['POST'])
 def submit_results():
     return UserController.submit_results()
-
-
-# Scoreboard
