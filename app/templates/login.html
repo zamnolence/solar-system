@@ -25,7 +25,7 @@
     </p>
     <p>{{ form.submit(id='submit-field', class_="signin-button") }}</p>
   </form>
-  <p style="text-align:center;"><a href="{{ url_for('register') }}">New User? Click here to register!</a></p>
-  <p style="text-align:center;"><a href="{{ url_for('reset_password_request') }}">Forgot Your Password?</a></p>
+  <p style="text-align:center;"><a id="register" href="{{ url_for('register') }}">New User? Click here to register!</a></p>
+  <p style="text-align:center;"><a id="forgotten_password" href="{{ url_for('reset_password_request') }}">Forgot Your Password?</a></p>
 </div>
 {% endblock %}

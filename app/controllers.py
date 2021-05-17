@@ -24,7 +24,7 @@ class UserController():
             login_user(user)
             next_page = request.args.get('next') # save requested (protected) URL
             if not next_page or url_parse(next_page).netloc !='':
-                next_page = 'home'               # redirect to home if requested URL doesn't exist
+                next_page = 'home'               # redirect to home if requested URL doesn't exist            
             return redirect(url_for(next_page))  # 
         return render_template('login.html', title="Log In", form=form)
     
