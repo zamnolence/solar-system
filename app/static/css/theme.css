@@ -656,8 +656,8 @@ footer {
     font-size: 11px;
     background: black;
     color:grey;
-    padding: 3rem 1rem;
     bottom: 0;
     left: 0;
+    height: 50px;
     width: 100%;
 }

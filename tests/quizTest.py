@@ -32,7 +32,7 @@ class QuizTest(unittest.TestCase):
   def test_quiz_navigation(self):
     for m in self.modules:
       self.driver.get("http://127.0.0.1:5000/{}".format(m))
-      self.driver.find_element_by_class_name("quiz-button").click()
+      self.driver.find_element_by_class_name("start-quiz").click()
       # For each question navigation button (above the question):
       buttons = self.driver.find_elements_by_class_name("qBtn")
       for b in buttons:
@@ -52,7 +52,7 @@ class QuizTest(unittest.TestCase):
   def test_quiz_selection(self):
     for m in self.modules:
       self.driver.get("http://127.0.0.1:5000/{}".format(m))
-      self.driver.find_element_by_class_name("quiz-button").click()
+      self.driver.find_element_by_class_name("start-quiz").click()
       # self.navigate_quiz_selections()
 
   # Iterates through every selection to check that there is only one correct answer
