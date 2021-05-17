@@ -43,9 +43,10 @@ This database diagram was generated using Online Database Schema Design and Mode
 
 Firstly, make sure that Python 3 is installed on your local machine.
 
-1. Clone the repository to local:
+1. Clone the repository to local and change the working directory to solar-system:
 ```
 git clone https://github.com/zamnolence/solar-system.git
+cd solar-system
 ```
 
 2. On the local repository, create a virtual environment:
